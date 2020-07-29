@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+Python Calculator &bull; haselkern
+</title>
+
+	<link rel="icon" type="image/png" href="/res/logo.png">
+    <link rel="stylesheet" href="/res/line-awesome/css/line-awesome.min.css">
+
+    <style>
+        html,body,*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;color:#252525}@font-face{font-family:'Lato';font-style:normal;font-weight:900;font-display:swap;src:local("Lato Black"),local("Lato-Black"),url("/res/lato/Lato-Black.ttf") format("truetype")}h1{font-family:Lato,sans-serif;font-size:2.5rem;border-radius:.4rem}h1.invert{padding:0 1rem;color:#fff;background-color:#252525;display:inline-block}h2{font-family:Lato,sans-serif;font-size:2.25rem;border-radius:.4rem}h2.invert{padding:0 1rem;color:#fff;background-color:#252525;display:inline-block}h3{font-family:Lato,sans-serif;font-size:2rem;border-radius:.4rem}h3.invert{padding:0 1rem;color:#fff;background-color:#252525;display:inline-block}h4{font-family:Lato,sans-serif;font-size:1.75rem;border-radius:.4rem}h4.invert{padding:0 1rem;color:#fff;background-color:#252525;display:inline-block}h5{font-family:Lato,sans-serif;font-size:1.5rem;border-radius:.4rem}h5.invert{padding:0 1rem;color:#fff;background-color:#252525;display:inline-block}h6{font-family:Lato,sans-serif;font-size:1.25rem;border-radius:.4rem}h6.invert{padding:0 1rem;color:#fff;background-color:#252525;display:inline-block}.muted{font-size:0.9rem;font-style:italic;color:#585858}.card{display:inline-block;padding:1rem;border-radius:.4rem;transition:200ms;background-color:#fff}.card.border{border:1px solid #252525;text-decoration:none;border:1px solid #d8d8d8}.card.border.clickable:hover{border-color:#8b8b8b}.card .image{background-position:center;background-size:cover;min-height:10rem;margin:-1rem;border-radius:.4rem .4rem 0 0}.shadow{box-shadow:0 0.5rem 1rem rgba(37,37,37,0.2)}.shadow.clickable:hover{box-shadow:0 0.5rem 1rem rgba(37,37,37,0.4)}.titlebar{height:3rem;display:flex;flex-direction:row}.titlebar a{text-decoration:none;margin-left:1rem}.titlebar a.title{margin-left:0}.titlebar a:hover{text-decoration:underline}.spacer{flex-grow:1}.wrapper .item{margin-left:.5rem;margin-right:.5rem;min-width:18rem}.wrapper.tight{margin:0 auto;max-width:64rem}.wrapper.tighter{margin:0 auto;max-width:42rem}.actions{display:flex}.actions .action{transition:200ms;text-decoration:none;width:4rem;height:4rem;border-radius:4rem;display:inline-flex;align-items:center;justify-content:center;margin-left:1rem}.actions .action:first-child{margin-left:0}.actions .action i{font-size:1.8rem}.actions .action.primary{background-color:#252525}.actions .action.primary i{color:#fff}.toppad{margin-top:1rem}.bottompad{margin-bottom:1rem}.flexer{display:flex;flex-wrap:wrap}.flexer .item{flex:1;text-decoration:none}.flexer .item.wide{flex:2}.flexer .full{flex:100%}.center{text-align:center}.right{text-align:right}.content *{margin-bottom:1rem}.content img{display:block;margin:0 auto;max-width:100%;border-radius:.4rem}.content li{margin-left:2rem;margin-bottom:.5rem}p{line-height:1.4rem}hr{border:1px solid #8b8b8b;max-width:4rem;margin:1rem auto}pre{padding:1rem;border-radius:.4rem;overflow:auto}pre,pre *{font-family:"monospace"}code{font-family:monospace;background-color:#252525;color:#fff;padding:0.2rem 0.4rem;border-radius:.4rem}@media (max-width: 42rem){.mobile-hidden{display:none}.flexer .item{flex:100%}}
+
+    </style>
+</head>
+<body>
+    
+    <div class="wrapper tight">
+        <nav class="card item titlebar">
+            <a href="/" class="title">
+                haselkern
+            </a>
+            <div class="spacer"></div>
+            
+                <a href="/about">About</a>
+            
+        </nav>
+    </div>
+
+    
+
+<div class="wrapper flexer tighter">
+    <div class="card item full">
+
+        
+        
+        <div style="background-image: url('/processed_images/97b4924bb36ada5400.jpg');" class="image"></div>
+        <h3 class="invert">Python Calculator</h3>
+        
+
+        
+
+        
+        <p class="muted toppad">
+            10 April 2020
+        </p>
+        
+
+        <div class="content toppad">
+            <p>I wanted to have a powerful calculator at my hand, which I could open with a simple shortcut. Naturally, Python came to my mind, as it is preinstalled on any modern Linux and can calculate things with remarkable accuracy.</p>
+<p>It's easy enough to bind a command to a hotkey and have it open a terminal with Python. <em>(In Gnome3 you can go to settings → keyboard shortcuts → press <code>+</code> at the bottom.)</em></p>
+<pre style="background-color:#272822;">
+<code><span style="color:#f8f8f2;">gnome-terminal</span><span style="color:#f92672;"> --</span><span style="color:#f8f8f2;"> python3
+</span></code></pre>
+<p>But this is not that ergonomic, since whenever you want to compute the sine, for example, you would need to run <code>from math import sin</code>. Doing this every time you need to use a mathematical functions in a <em>calculator</em> seems a bit dull. Luckily, you can run a custom command when opening python, in which you can import everything from the <em>math</em> module. The command line option <code>-c</code> allows you to specify a custom command to run. Since this would normally terminate the interpreter after running that command, you also need to pass <code>-i</code> to keep the interpreter in interactive mode.</p>
+<pre style="background-color:#272822;">
+<code><span style="color:#f8f8f2;">gnome-terminal</span><span style="color:#f92672;"> --</span><span style="color:#f8f8f2;"> python3 -ic </span><span style="color:#e6db74;">&quot;from math import *&quot;
+</span></code></pre>
+<p>I have bound this command to the calculator key on my keyboard, which is pretty nice.</p>
+<p><em>Pro-Tip:</em> You can use the variable <code>_</code> to work with the previous result.</p>
+
+        </div>
+
+    </div>
+
+    
+    <div class="card item full right bottompad actions">
+        <div class="spacer"></div>
+        <a href="#" title="Scroll to top" class="action shadow clickable">
+            <i class="las la-angle-double-up"></i>
+        </a>
+        <div class="spacer"></div>
+    </div>
+    
+
+</div>
+
+
+
+</body>
+</html>
