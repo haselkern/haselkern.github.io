@@ -50,11 +50,11 @@ Python Calculator &bull; haselkern
             <p>I wanted to have a powerful calculator at my hand which I could open with a simple shortcut. Naturally, Python came to my mind, as it is preinstalled on any modern Linux and can calculate things with remarkable accuracy.</p>
 <p>It's easy enough to bind a command to a hotkey and have it open a terminal with Python. <em>(In Gnome3 you can go to settings → keyboard shortcuts → press <code>+</code> at the bottom.)</em></p>
 <pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">gnome-terminal</span><span style="color:#f92672;"> --</span><span style="color:#f8f8f2;"> python3
+<code class="language-sh" data-lang="sh"><span style="color:#f8f8f2;">gnome-terminal</span><span style="color:#f92672;"> --</span><span style="color:#f8f8f2;"> python3
 </span></code></pre>
 <p>But this is not that ergonomic, since whenever you want to compute the sine, for example, you would need to run <code>from math import sin</code>. Doing this every time you need to use a mathematical functions in a <em>calculator</em> seems a bit dull. Luckily, you can run a custom command when opening python, in which you can import everything from the <em>math</em> module. The command line option <code>-c</code> allows you to specify a custom command to run. Since this would normally terminate the interpreter after running that command, you also need to pass <code>-i</code> to keep the interpreter in interactive mode.</p>
 <pre style="background-color:#272822;">
-<code><span style="color:#f8f8f2;">gnome-terminal</span><span style="color:#f92672;"> --</span><span style="color:#f8f8f2;"> python3 -ic </span><span style="color:#e6db74;">&quot;from math import *&quot;
+<code class="language-sh" data-lang="sh"><span style="color:#f8f8f2;">gnome-terminal</span><span style="color:#f92672;"> --</span><span style="color:#f8f8f2;"> python3 -ic </span><span style="color:#e6db74;">&quot;from math import *&quot;
 </span></code></pre>
 <p>I have bound this command to the calculator key on my keyboard, which is pretty nice.</p>
 <p><em>Pro-Tip:</em> You can use the variable <code>_</code> to work with the previous result.</p>
