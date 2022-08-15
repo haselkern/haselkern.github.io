@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>game on haselkern</title>
+    <link>https://haselkern.com/tags/game/</link>
+    <description>Recent content in game on haselkern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://haselkern.com/tags/game/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trash Belt</title>
+      <link>https://haselkern.com/project/trash-belt/</link>
+      <pubDate>Sun, 10 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/project/trash-belt/</guid>
+      <description>Fly through space and try not to crash! A game for Android where your goal is to collect coins.
+I used Unity a lot for prototyping smaller games, but always wanted to try Godot. This game is the result of me playing around with it over the course of a weekend.
+I made most of this game over the course of a weekend and added more features over time.</description>
+    </item>
+    
+  </channel>
+</rss>

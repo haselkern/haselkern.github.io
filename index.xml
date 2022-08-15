@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>haselkern</title>
+    <link>https://haselkern.com/</link>
+    <description>Recent content on haselkern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://haselkern.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The part where he kills you</title>
+      <link>https://haselkern.com/project/the-part-where-he-kills-you/</link>
+      <pubDate>Sat, 16 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/project/the-part-where-he-kills-you/</guid>
+      <description>A 3D animation with a giant robot.</description>
+    </item>
+    
+    <item>
+      <title>Sprich</title>
+      <link>https://haselkern.com/project/sprich/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/project/sprich/</guid>
+      <description>Sprich (German: speak) is a tool for game developers. It allows you to easily create complex dialogs for NPCs by compiling a simple, human readable text file into JSON you can use in your game.</description>
+    </item>
+    
+    <item>
+      <title>Trash Belt</title>
+      <link>https://haselkern.com/project/trash-belt/</link>
+      <pubDate>Sun, 10 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/project/trash-belt/</guid>
+      <description>Fly through space and try not to crash! A game for Android where your goal is to collect coins.
+I used Unity a lot for prototyping smaller games, but always wanted to try Godot. This game is the result of me playing around with it over the course of a weekend.
+I made most of this game over the course of a weekend and added more features over time.</description>
+    </item>
+    
+    <item>
+      <title>Ubervotebot</title>
+      <link>https://haselkern.com/project/ubervotebot/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/project/ubervotebot/</guid>
+      <description>A Telegram bot to create polls with. Thousands of people love it.
+The results can be shown in a number of different ways, see the screenshots for a preview of how it might look.
+Polls will look like this:
+And results can look like this:
+This project could not have happened without @yukuku&amp;rsquo;s bot starter kit, go check it out.
+Please note There is no limit on the amount of polls you can create, but if you create too many, the /result command will not work.</description>
+    </item>
+    
+    <item>
+      <title>Minecraft Armorstand</title>
+      <link>https://haselkern.com/project/armorstand/</link>
+      <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/project/armorstand/</guid>
+      <description>&lt;p&gt;The armorstand helper allows you to focus on designing an armorstand&amp;rsquo;s pose, without messing with any code.&lt;/p&gt;
+&lt;p&gt;This tool was originally written for Minecraft 1.8, but has been updated since then to support all different versions of Minecraft.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://haselkern.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/about/</guid>
+      <description>My name is Lars and I am a software developer from northern Germany. After studying computer science for over six years I now work as a software developer for worldiety. I&amp;rsquo;m fascinated by technology, love programming and try to get into CGI. Check the links above to find ways to contact me, if you have any questions about projects I&amp;rsquo;m working on.</description>
+    </item>
+    
+    <item>
+      <title>Not Found</title>
+      <link>https://haselkern.com/404.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/404.html</guid>
+      <description>The page you are looking for could not be found. Maybe you can find it on the home page?</description>
+    </item>
+    
+  </channel>
+</rss>

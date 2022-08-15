@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>telegram on haselkern</title>
+    <link>https://haselkern.com/tags/telegram/</link>
+    <description>Recent content in telegram on haselkern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Nov 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://haselkern.com/tags/telegram/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubervotebot</title>
+      <link>https://haselkern.com/project/ubervotebot/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://haselkern.com/project/ubervotebot/</guid>
+      <description>A Telegram bot to create polls with. Thousands of people love it.
+The results can be shown in a number of different ways, see the screenshots for a preview of how it might look.
+Polls will look like this:
+And results can look like this:
+This project could not have happened without @yukuku&amp;rsquo;s bot starter kit, go check it out.
+Please note There is no limit on the amount of polls you can create, but if you create too many, the /result command will not work.</description>
+    </item>
+    
+  </channel>
+</rss>
