@@ -13,12 +13,9 @@
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
       <guid>https://haselkern.com/project/ubervotebot/</guid>
-      <description>A Telegram bot to create polls with. Thousands of people love it.
-The results can be shown in a number of different ways, see the screenshots for a preview of how it might look.
-Polls will look like this:
-And results can look like this:
-This project could not have happened without @yukuku&amp;rsquo;s bot starter kit, go check it out.
-Please note There is no limit on the amount of polls you can create, but if you create too many, the /result command will not work.</description>
+      <description>&lt;p&gt;A Telegram bot to create polls with. Thousands of people love it.&lt;/p&gt;
+&lt;p&gt;The results can be shown in a number of different ways, see the screenshots for
+a preview of how it might look.&lt;/p&gt;</description>
     </item>
     
   </channel>
