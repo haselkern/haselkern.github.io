@@ -2,16 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://haselkern.com/tags/api/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/blog/2022-protocol-api-errors/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/blog/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/tags/programming/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/tags/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/tags/web/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://haselkern.com/tags/3d/</loc>
     <lastmod>2022-07-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://haselkern.com/</loc>
-    <lastmod>2022-07-16T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://haselkern.com/project/</loc>
-    <lastmod>2022-07-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://haselkern.com/tags/</loc>
     <lastmod>2022-07-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://haselkern.com/project/the-part-where-he-kills-you/</loc>
@@ -48,8 +63,6 @@
     <lastmod>2014-08-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://haselkern.com/about/</loc>
-  </url><url>
-    <loc>https://haselkern.com/blog/</loc>
   </url><url>
     <loc>https://haselkern.com/404.html</loc>
   </url>

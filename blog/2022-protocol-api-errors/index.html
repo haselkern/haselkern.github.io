@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    
+    
+    <title>API Errors Are Not Protocol Errors • haselkern</title>
+
+    
+    </head>
+<body><div class="flex flex-col items-center py-14">
+    <a href="/" class="inline-flex flex-col items-center">
+        <img src="/img/haselkern.svg" class="w-24 opacity-80 dark:invert" />
+        <h1 class="text-2xl font-bold font-serif mt-2">haselkern</h1>
+    </a>
+    <div class="mt-2">
+        
+            
+            <a href="/project/">Projects</a>
+        
+             &bull; 
+            <a href="/about/">About</a>
+        
+    </div>
+</div>
+<main class="max-w-2xl mx-auto px-4">
+
+<div class="space-y-2">
+    <h1 class="text-2xl font-serif">API Errors Are Not Protocol Errors</h1>
+    
+    <div class="flex space-x-2">
+    
+    </div>
+    
+    
+<p>
+    
+    
+        27 Sep. 2022
+    
+
+    
+
+    
+    
+        &bull;
+    
+        
+            <a href="https://haselkern.com/tags/programming/" class="underline">#programming</a>
+        
+    
+        
+            <a href="https://haselkern.com/tags/api/" class="underline">#api</a>
+        
+    
+        
+            <a href="https://haselkern.com/tags/web/" class="underline">#web</a>
+        
+    
+    
+</p>
+
+    
+    
+    
+    <div id="content">
+        <p>I visit the <a href="https://www.reddit.com/r/programming/">programming subreddit</a> from time to time to check for any projects that might be worth looking into, when I stumbled on something interesting. People were making fun of APIs that returned a status code 404 (NOT FOUND) inside the response, while having a HTTP status 200 (OK).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curlie api.example/some/resource
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+</span></span><span style="display:flex;"><span>content-type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;status&#34;</span>: 404,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;data&#34;</span>: null
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="bg-amber-100 dark:bg-stone-700 rounded-md p-2 flex space-x-2">
+    <div>
+        
+        ℹ️
+        
+    </div>
+    <div>
+        I like using <a href="https://curlie.io">curlie</a> because it shows more information out of the box like I would expect curl to work, including some highlighting.
+    </div>
+</div>
+
+<p>It was argued that in this case the API should just return HTTP status 404, without any content, because having multiple status codes is just silly. I would disagree, but lets look at an example first. Say I can get details about some product by its ID from an API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curlie api.example/producs/123
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#ae81ff">404</span> Not Found
+</span></span></code></pre></div><p>Hm, there seems to be no product with ID 123. Oh wait, I just made a typo, it&rsquo;s obviously <code>products</code>, not <code>producs</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curlie api.example/products/123
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#ae81ff">404</span> Not Found
+</span></span></code></pre></div><p>So, uh, there is no product with ID 123? I think. Or maybe the endpoint does not exist. And that&rsquo;s a problem you cannot really solve by cramming results from your API into an HTTP status code, which is why I think that API errors should not be treated as protocol errors.</p>
+<p>There are two conceptual layers at play here, the HTTP layer that transports some bytes with metadata from A to B and your application on top that wants to transport structured information using the layer below. Confusing status codes from one layer with those from the other one is a burden for everyone involved. The initial example I gave was actually pretty close to a response I would expect from a nice API server, but using status 404 has no place in application data, were such an HTTP specific code is not relevant. Something like this would probably be more readable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ curlie api.example/products/123
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+</span></span><span style="display:flex;"><span>content-type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;code&#34;</span>: <span style="color:#e6db74">&#34;not_found&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;The requested product could not be found.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;data&#34;</span>: null
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Notice how the HTTP status code is 200 because transport was okay, but the response contains an application specific error. This is also the approach <a href="https://graphql.org">GraphQL</a> has taken, were servers usually only have a single endpoint you can post to. This endpoint always returns HTTP 200 if the server works, with relevant data being encoded in the request and response data.</p>
+<hr>
+<p>This post is just my personal opinion, if you like using HTTP status codes in your API that&rsquo;s fine! But maybe reading this gave you some things to think about when designing or working with your next API.</p>
+
+    </div>
+</div>
+
+
+        </main><div class="text-center text-sm opacity-50 py-12">
+    &copy; 2022 Lars Martens &bull; <a href="/index.xml">RSS</a>
+</div></body>
+</html>
