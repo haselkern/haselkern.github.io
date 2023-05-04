@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://haselkern.com/blog/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/tags/game/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/blog/2023-ld53-cassie-the-carrier-pidgeon/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://haselkern.com/tags/</loc>
+    <lastmod>2023-05-03T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://haselkern.com/tags/api/</loc>
     <lastmod>2022-09-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://haselkern.com/blog/2022-protocol-api-errors/</loc>
     <lastmod>2022-09-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://haselkern.com/blog/</loc>
-    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://haselkern.com/</loc>
-    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://haselkern.com/tags/programming/</loc>
-    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://haselkern.com/tags/</loc>
     <lastmod>2022-09-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://haselkern.com/tags/web/</loc>
@@ -40,9 +46,6 @@
   </url><url>
     <loc>https://haselkern.com/project/sprich/</loc>
     <lastmod>2019-05-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://haselkern.com/tags/game/</loc>
-    <lastmod>2019-02-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://haselkern.com/project/trash-belt/</loc>
     <lastmod>2019-02-10T00:00:00+00:00</lastmod>
