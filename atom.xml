@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>haselkern</title>
+    <link rel="self" type="application/atom+xml" href="https://haselkern.com/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://haselkern.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-04-19T00:00:00+00:00</updated>
+    <id>https://haselkern.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Static Site Generators Are Great</title>
+        <published>2024-04-19T00:00:00+00:00</published>
+        <updated>2024-04-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-ssg/"/>
+        <id>https://haselkern.com/blog/2024-ssg/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2024-ssg/">&lt;p&gt;A static site generator is a piece of software that takes a bunch of input files and turns them into a static website.
+Often these input files consist of some content and a theme for making the content look nice.&lt;&#x2F;p&gt;
+&lt;p&gt;A static website is one where the content does not change.
+It is static.
+Everything you see on this website is just as when I last uploaded it to a server.&lt;&#x2F;p&gt;
+&lt;p&gt;This has obvious disadvantages.
+I cannot have comments on here or show something like the current number of followers I have on any platform,
+without resorting to JavaScript calling third-party resources.&lt;&#x2F;p&gt;
+&lt;p&gt;But it also has advantages.
+A static website is simple.
+After editing my content, I push a button on my computer to preview the website and another one to upload it.
+That&#x27;s it.
+I&#x27;m currently (April 2024) using &lt;a href=&quot;https:&#x2F;&#x2F;pages.github.com&quot;&gt;GitHub Pages&lt;&#x2F;a&gt; which is free to use and really stable.
+I can go months without thinking about this website because I know that it won&#x27;t go down or be overrun by hackers.&lt;&#x2F;p&gt;
+&lt;p&gt;A static site generator works best for me and can probably work for you too,
+if you are not afraid to touch the terminal and fiddle around with theme files.&lt;&#x2F;p&gt;
+&lt;p&gt;Now that I have switched the site generator once again,
+it might be fun to reflect on the changes this website went through.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;my-website-journey&quot;&gt;My Website Journey&lt;&#x2F;h2&gt;
+&lt;p&gt;I created this personal website in 2016 using a custom generator that was just called &lt;code&gt;build.py&lt;&#x2F;code&gt; at the time.
+It was written in Python and very simple.
+It would read in a single template HTML file
+and fill that with the content of every markdown file it found in the working tree.
+It had a special mode for generating an index file
+and was able to read JSON frontmatter.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is the majestic beauty I built with it:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-14.png&quot; alt=&quot;a colorful website with big clickable tiles&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Eventually, I got fed up with this design and at the end of 2016 I implemented a cleaner look:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-20.png&quot; alt=&quot;a sparse website with a few links and a stylized font&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In July of 2017, I renamed the tool to &lt;code&gt;goliath&lt;&#x2F;code&gt;.
+I had big plans with it at the time
+and used the chance and motivation to refine the design of my website
+over a the course of a few months.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-07-09.png&quot; alt=&quot;a website with the title on the left side and a few links on the right&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-10-18.png&quot; alt=&quot;the same website, but now with the title at the top&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-11-25.png&quot; alt=&quot;the same website, but now with a tilted background box&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Writing your own generator is fun.
+But when tinkering with it you barely improve your website.
+Instead of writing something or creating a new project,
+you spend a lot of time tweaking the generator for your website.
+That&#x27;s not a bad thing, but it was not wanted I wanted to keep doing.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s why in March of 2018, I switched to the first &amp;quot;real&amp;quot; static site generator: &lt;a href=&quot;https:&#x2F;&#x2F;getpelican.com&quot;&gt;Pelican&lt;&#x2F;a&gt;.
+It seemed simple enough and I was into Python at the time.
+I also changed the design a bit.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2018-03-28.png&quot; alt=&quot;the same website as before, but now with thinner fonts&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In September of 2018, I switched to &amp;quot;Ivy&amp;quot;.
+The package on PyPi has been replaced by a machine-learning library,
+which I find interesting.
+I don&#x27;t think the design changed much, but I cannot rebuild the website for this state.&lt;&#x2F;p&gt;
+&lt;p&gt;In May 2019 I made the switch to &lt;a href=&quot;https:&#x2F;&#x2F;gohugo.io&quot;&gt;Hugo&lt;&#x2F;a&gt;.
+Hugo is great.
+It is fast, has lots of customization options
+and is easy to use thanks to its extensive documentation.&lt;&#x2F;p&gt;
+&lt;p&gt;This was also the first time I thought about what I wanted people to do on my website.
+In the screenshot, you can see some actions for every project,
+with the main action, like opening a website or downloading a file, being highlighted.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-11-24.png&quot; alt=&quot;a black-and-white website with a few of my projects&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Hugo is pretty great, but it also feels really big.
+There are so many different things to do with it, that it feels overwhelming at times.
+It can do everything I want, but I was looking for something simpler.&lt;&#x2F;p&gt;
+&lt;p&gt;Around this time I was beginning to get interested in Rust
+and eventually found &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&quot;&gt;Zola&lt;&#x2F;a&gt;,
+which is written in Rust.
+Being hyper-focused on that language I was eager to get some use out of software written in it.&lt;&#x2F;p&gt;
+&lt;p&gt;So in December 2019, a new design was built with Zola.
+I kept the idea of the previous design but made it more playful with some images and rounded boxes.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-12-22.png&quot; alt=&quot;a website with my projects, each project having an image and some actions&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;In August 2022, I switched back to Hugo. God knows why.&lt;&#x2F;p&gt;
+&lt;p&gt;I also made the website much simpler.
+It featured a single stream of posts because I wanted to blog more.
+It is much easier and more fun to write a few lines about some topic,
+than it is to create and maintain a project.
+The previous design featured the same few projects for years.
+With this design, my projects were still accessible, but content would be the new focus.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2024-04-18.png&quot; alt=&quot;a simple website showing a post preview, it is split into light and dark mode&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-now&quot;&gt;What now?&lt;&#x2F;h2&gt;
+&lt;p&gt;Two years after the last design change, I&#x27;m writing this post
+and notice that I have written way less than I imagined I would.
+Finding the motivation to write things down is in itself a challenge.
+Having a half-baked website theme that does not properly support many parts of markdown did not help.
+I can only really blame myself here.
+I wanted to make the design my own
+and, again, spent more time tinkering with the website itself
+than writing about more interesting things.&lt;&#x2F;p&gt;
+&lt;p&gt;I decided to switch back to &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&quot;&gt;Zola&lt;&#x2F;a&gt;.
+I like the simplicity.
+Simplicity is also the main theme of the theme I&#x27;m using:
+&lt;a href=&quot;https:&#x2F;&#x2F;zola-bearblog.netlify.app&quot;&gt;Zola ʕ•ᴥ•ʔ Bear Blog&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;zola-bear-preview.png&quot; alt=&quot;zola bear blog preview&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;It is inspired by a tiny blogging platform I found: &lt;a href=&quot;https:&#x2F;&#x2F;bearblog.dev&quot;&gt;bearblog.dev&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a blogging platform where words matter most.&lt;&#x2F;p&gt;
+&lt;p&gt;Shun the bloat of the current web, embrace the bear necessities.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I think that&#x27;s a great mission.
+Instead of getting blinded by flashy features,
+I just want a place to write down my thoughts.
+After all the changes this website went through in the previous years,
+I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Ludum Dare 53: Cassie The Carrier Pidgeon</title>
+        <published>2023-05-03T00:00:00+00:00</published>
+        <updated>2023-05-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2023-ld53-cassie-the-carrier-pidgeon/"/>
+        <id>https://haselkern.com/blog/2023-ld53-cassie-the-carrier-pidgeon/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2023-ld53-cassie-the-carrier-pidgeon/">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;cassie-the-carrier-pidgeon&quot;&gt;Download the game from the Ludum Dare website here.&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I decided to participate in &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&quot;&gt;Ludum Dare&lt;&#x2F;a&gt; this year. Ludum Dare is a biannual game jam, where you create a game catering to a theme that is announced when the jam starts. There are several categories, but I decided to participate in the &amp;quot;compo&amp;quot;, the competition, where you create a game from scratch, by yourself, in 48 hours.&lt;&#x2F;p&gt;
+&lt;p&gt;This years theme was &lt;em&gt;delivery&lt;&#x2F;em&gt;. I had some trouble coming up with ideas that felt fun and fit the theme, but after some tinkering I landed on my final idea: A pidgeon that needs to deliver packages in a village. That village is under attack by monsters, so you need to protect yourself with a gun. The more points you score, the more monsters will spawn, forcing you to be careful and also upgrade your weapon.&lt;&#x2F;p&gt;
+&lt;p&gt;I can now proudly present: Cassie, the carrier pidgeon. &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;cassie-the-carrier-pidgeon&quot;&gt;Download from Ludum Dare&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;banner.png&quot; alt=&quot;A pixel art pidgeon carrying a gattling gun under its wing.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Developing a game from scratch in such a small amount of time is challenging. There&#x27;s so many parts needed to make a playable game that you really need to focus on a tiny amount of features to complete it. To give you a rough idea of how I spent my weekend:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;I came up with an idea.&lt;&#x2F;li&gt;
+&lt;li&gt;I implemented basic character controls and shooting.&lt;&#x2F;li&gt;
+&lt;li&gt;I added monsters you can shoot.&lt;&#x2F;li&gt;
+&lt;li&gt;I drew placeholder graphics.&lt;&#x2F;li&gt;
+&lt;li&gt;I added jobs so you can pick up packages.&lt;&#x2F;li&gt;
+&lt;li&gt;I added houses you deliver the packages to.&lt;&#x2F;li&gt;
+&lt;li&gt;I randomized house positions because I was too lazy to do proper level design.&lt;&#x2F;li&gt;
+&lt;li&gt;I added health you can lose when you&#x27;re attacked.&lt;&#x2F;li&gt;
+&lt;li&gt;I added a game over screen.&lt;&#x2F;li&gt;
+&lt;li&gt;I added a menu screen.&lt;&#x2F;li&gt;
+&lt;li&gt;I tweaked the spawning behavior of monsters.&lt;&#x2F;li&gt;
+&lt;li&gt;I added upgradable shooting cooldown.&lt;&#x2F;li&gt;
+&lt;li&gt;I fixed weird bugs when switching between menu and game.&lt;&#x2F;li&gt;
+&lt;li&gt;I added a system for jobs with varying difficulty.&lt;&#x2F;li&gt;
+&lt;li&gt;I added an auto fire upgrade for the gun.&lt;&#x2F;li&gt;
+&lt;li&gt;I tweaked the spawning behavior of monsters (again).&lt;&#x2F;li&gt;
+&lt;li&gt;I made some background music.&lt;&#x2F;li&gt;
+&lt;li&gt;I drew prettier graphics.&lt;&#x2F;li&gt;
+&lt;li&gt;I fixed some bugs of the weapon upgrades and the player&#x27;s walking speed.&lt;&#x2F;li&gt;
+&lt;li&gt;I added explosion effects and sound effects.&lt;&#x2F;li&gt;
+&lt;li&gt;I tweaked the spawning behavior of monsters (&lt;em&gt;again&lt;&#x2F;em&gt;).&lt;&#x2F;li&gt;
+&lt;li&gt;And finally I exported the game and tested it a bit more.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;That&#x27;s so much stuff! And that does not even include all the fun ideas I had for different weapon types, more enemy types, different maps and so on. I really thought that I could at least implement different bullet types, but that was reduced to being able to upgrade your shooting speed.&lt;&#x2F;p&gt;
+&lt;p&gt;Drawing graphics was also interesting, since I&#x27;m not really that great at it. This is what the game looked like while I was still prototyping:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;dev02.png&quot; alt=&quot;Crude pixel art with a horrible color palette and very basic characters&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;All the things are there, but you would probably be a bit more into it if the game looked nice. I turned to &lt;a href=&quot;https:&#x2F;&#x2F;lospec.com&quot;&gt;lospec.com&lt;&#x2F;a&gt;, a great resource for things about pixel art, and decided to go with the &lt;a href=&quot;https:&#x2F;&#x2F;lospec.com&#x2F;palette-list&#x2F;nyx8&quot;&gt;Nyx8&lt;&#x2F;a&gt; color palette to give my game a makeover. Limiting myself to a few colors to choose from does not guarantee that the game will look nice, but reduces the number of artistic crimes I am able to commit. This is the game after I redrew everything:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;game01.png&quot; alt=&quot;Still crude pixel art game, but now with consistent muted purple and orange colors.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Doing all the things above in only 48 hours was definitely stressful. I had a lot of fun and now can brag about a new game, but I underestimated how much the limited time influenced the amount of fun I had. The jam felt less like a fun weekend activity and more like an extended work week.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;cassie-the-carrier-pidgeon&quot;&gt;Download the game from the  Ludum Dare website&lt;&#x2F;a&gt; if you want to try it out and maybe leave a little feedback there if you like.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;A few days after the jam &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;popcorn-odyssey&#x2F;i-made-a-little-art-for-some-of-my-favorite-games-in-this-jam&quot;&gt;0X_VOID_X0 made some awesome fanart&lt;&#x2F;a&gt; of their favorite games which I just had to share. Thank you!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;fanart.png&quot; alt=&quot;Characters from several games, including a mean looking Cassie&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>API Errors Are Not Protocol Errors</title>
+        <published>2022-09-27T00:00:00+00:00</published>
+        <updated>2022-09-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2022-protocol-api-errors/"/>
+        <id>https://haselkern.com/blog/2022-protocol-api-errors/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2022-protocol-api-errors/">&lt;p&gt;I visit the &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;programming&#x2F;&quot;&gt;programming subreddit&lt;&#x2F;a&gt; from time to time to check for any projects that might be worth looking into, when I stumbled on something interesting. People were making fun of APIs that returned a status code 404 (NOT FOUND) inside the response, while having a HTTP status 200 (OK).&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;some&#x2F;resource
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 200 OK
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;content-type:&lt;&#x2F;span&gt;&lt;span&gt; application&#x2F;json
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;status&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; 404,
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;data&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; null
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;(I like using &lt;a href=&quot;https:&#x2F;&#x2F;curlie.io&quot;&gt;curlie&lt;&#x2F;a&gt; because it shows more information out of the box like I would expect curl to work, including some highlighting.)&lt;&#x2F;p&gt;
+&lt;p&gt;It was argued that in this case the API should just return HTTP status 404, without any content, because having multiple status codes is just silly. I would disagree, but lets look at an example first. Say I can get details about some product by its ID from an API:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;producs&#x2F;123
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 404 Not Found
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Hm, there seems to be no product with ID 123. Oh wait, I just made a typo, it&#x27;s obviously &lt;code&gt;products&lt;&#x2F;code&gt;, not &lt;code&gt;producs&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;products&#x2F;123
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 404 Not Found
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So, uh, there is no product with ID 123? I think. Or maybe the endpoint does not exist. And that&#x27;s a problem you cannot really solve by cramming results from your API into an HTTP status code, which is why I think that API errors should not be treated as protocol errors.&lt;&#x2F;p&gt;
+&lt;p&gt;There are two conceptual layers at play here, the HTTP layer that transports some bytes with metadata from A to B and your application on top that wants to transport structured information using the layer below. Confusing status codes from one layer with those from the other one is a burden for everyone involved. The initial example I gave was actually pretty close to a response I would expect from a nice API server, but using status 404 has no place in application data, were such an HTTP specific code is not relevant. Something like this would probably be more readable:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;products&#x2F;123
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 200 OK
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;content-type:&lt;&#x2F;span&gt;&lt;span&gt; application&#x2F;json
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;code&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;not_found&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;,
+&lt;&#x2F;span&gt;&lt;span&gt;        &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;message&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;The requested product could not be found.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;    },
+&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;data&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; null
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Notice how the HTTP status code is 200 because transport was okay, but the response contains an application specific error. This is also the approach &lt;a href=&quot;https:&#x2F;&#x2F;graphql.org&quot;&gt;GraphQL&lt;&#x2F;a&gt; has taken, were servers usually only have a single endpoint you can post to. This endpoint always returns HTTP 200 if the server works, with relevant data being encoded in the request and response data.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;This post is just my personal opinion, if you like using HTTP status codes in your API that&#x27;s fine! But maybe reading this gave you some things to think about when designing or working with your next API.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>The part where he kills you</title>
+        <published>2022-07-16T00:00:00+00:00</published>
+        <updated>2022-07-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2022-the-part-where-he-kills-you/"/>
+        <id>https://haselkern.com/blog/2022-the-part-where-he-kills-you/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2022-the-part-where-he-kills-you/">&lt;p&gt;A 3D animation with a giant robot I made. Watch it here or &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=lhgG_PeIKfk&quot;&gt;on YouTube&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;div style=&quot;position: relative; overflow: hidden; width: 100%; padding-top: 56.25%;&quot;&gt;
+    &lt;iframe style=&quot;position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;&quot; width=&quot;100%&quot;
+        height=&quot;100%&quot;
+        src=&quot;https:&#x2F;&#x2F;www.youtube-nocookie.com&#x2F;embed&#x2F;lhgG_PeIKfk&quot;
+        webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Sprich</title>
+        <published>2019-05-09T00:00:00+00:00</published>
+        <updated>2019-05-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2019-sprich/"/>
+        <id>https://haselkern.com/blog/2019-sprich/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2019-sprich/">&lt;p&gt;Install it from &lt;a href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;sprich&quot;&gt;PyPi&lt;&#x2F;a&gt;
+or check out &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;haselkern&#x2F;sprich&quot;&gt;the source code on GitHub&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Sprich (German: &lt;em&gt;speak&lt;&#x2F;em&gt;) is a tool for game developers. It allows you to easily
+create complex dialogs for NPCs by compiling a simple, human readable text file
+into JSON you can use in your game.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Trash Belt</title>
+        <published>2019-02-10T00:00:00+00:00</published>
+        <updated>2019-02-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2019-trash-belt/"/>
+        <id>https://haselkern.com/blog/2019-trash-belt/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2019-trash-belt/">&lt;p&gt;Fly through space and try not to crash!
+A game for Android where your goal is to collect coins
+while avoiding space trash.&lt;&#x2F;p&gt;
+&lt;p&gt;I used Unity a lot for prototyping smaller games, but always wanted to try &lt;a href=&quot;https:&#x2F;&#x2F;godotengine.org&quot;&gt;Godot&lt;&#x2F;a&gt;.
+This game is the result of me playing around with it over the course of a weekend
+and adding some more features over time.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Update in 2024:&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;a href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.haselkern.android.game.spaceexplore&quot;&gt;original PlayStore page&lt;&#x2F;a&gt; is now offline because I did not have time to maintain it.&lt;&#x2F;p&gt;
+&lt;p&gt;I was able to dig up the APK file, so if you are using an Android device you might still be able to install it: &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;trash-belt.apk&quot;&gt;trash-belt.apk&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I also found the header image I used for the store page:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;header.png&quot; alt=&quot;header image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;And here are some screenshots from the game:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot1.jpg&quot; alt=&quot;menu&quot; &#x2F;&gt;
+&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot2.jpg&quot; alt=&quot;in game&quot; &#x2F;&gt;
+&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot3.jpg&quot; alt=&quot;game over&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Ubervotebot</title>
+        <published>2016-11-01T00:00:00+00:00</published>
+        <updated>2016-11-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2016-ubervotebot/"/>
+        <id>https://haselkern.com/blog/2016-ubervotebot/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2016-ubervotebot/">&lt;blockquote&gt;
+&lt;p&gt;Update in 2024: The bot is no longer working. &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;haselkern&#x2F;ubervotebot&quot;&gt;The source code is still available on GitHub&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;A Telegram bot to create polls with. Thousands of people love it.&lt;&#x2F;p&gt;
+&lt;p&gt;The results can be shown in a number of different ways, see the screenshots for
+a preview of how it might look.&lt;&#x2F;p&gt;
+&lt;p&gt;Polls will look like this:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;haselkern&#x2F;ubervotebot&#x2F;master&#x2F;screenshots&#x2F;poll.jpg&quot; alt=&quot;inline poll&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;And results can look like this:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;haselkern&#x2F;ubervotebot&#x2F;master&#x2F;screenshots&#x2F;result-list.jpg&quot; alt=&quot;result list&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;haselkern&#x2F;ubervotebot&#x2F;master&#x2F;screenshots&#x2F;result-names.jpg&quot; alt=&quot;result names&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;haselkern&#x2F;ubervotebot&#x2F;master&#x2F;screenshots&#x2F;result-grid.jpg&quot; alt=&quot;result names&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;haselkern&#x2F;ubervotebot&#x2F;master&#x2F;screenshots&#x2F;result-bars.jpg&quot; alt=&quot;result names&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This project could not have happened without @yukuku&#x27;s bot starter kit, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;yukuku&#x2F;telebot&quot;&gt;go check it out&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;please-note&quot;&gt;Please note&lt;&#x2F;h1&gt;
+&lt;p&gt;There is no limit on the amount of polls you can create, but if you create too many, the &lt;em&gt;&#x2F;result&lt;&#x2F;em&gt; command will not work. If that happens, you might want to try to delete an old poll.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Minecraft Armorstand</title>
+        <published>2014-08-17T00:00:00+00:00</published>
+        <updated>2014-08-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2014-armorstand/"/>
+        <id>https://haselkern.com/blog/2014-armorstand/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2014-armorstand/">&lt;p&gt;The armorstand helper allows you to focus on designing an armorstand&#x27;s pose, without messing with any code.&lt;&#x2F;p&gt;
+&lt;p&gt;This tool was originally written for Minecraft 1.8, but has been updated since then to support all different versions of Minecraft.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;Minecraft-ArmorStand&#x2F;&quot;&gt;Use it online here&lt;&#x2F;a&gt; or take a look at the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;haselkern&#x2F;Minecraft-ArmorStand&quot;&gt;source code on GitHub&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;help&quot;&gt;Help&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;navigation&quot;&gt;Navigation&lt;&#x2F;h2&gt;
+&lt;p&gt;The panel on the left shows a preview of what your armorstand will look like, once it&#x27;s in game. You can drag this view around, to look at the armorstand from different angles.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;version&quot;&gt;Version&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2014-armorstand&#x2F;version.png&quot; alt=&quot;select the appropriate version&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;There are small differences between the different versions of Minecraft, so please select the version you&#x27;re playing in here. Minecraft will display the current version in the launcher and in the bottom left corner of the menu screen. If you have no idea what to select, the default option is probably fine.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;options&quot;&gt;Options&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2014-armorstand&#x2F;settings.png&quot; alt=&quot;checkboxes for options&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;These checkboxes control various aspects of your armorstand.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Invisible&lt;&#x2F;em&gt; turns your armorstand invisible.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;Invulnerable&lt;&#x2F;em&gt; makes it indestructible. You can remove all armorstands within a five block radius around you with this command: &lt;code&gt;&#x2F;kill @e[r=5,type=armor_stand]&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;PersistenceRequired&lt;&#x2F;em&gt; is a technical attribute. If you don&#x27;t know what it means, you don&#x27;t need this.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;No Base Plate&lt;&#x2F;em&gt; hides the stone plate the armorstand is standing on.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;No Gravity&lt;&#x2F;em&gt; makes the armorstand float in the air.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;Show Arms&lt;&#x2F;em&gt; enables the arms and allows you to modify them.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;Small&lt;&#x2F;em&gt; makes the armorstand small.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;pose&quot;&gt;Pose&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2014-armorstand&#x2F;sliders.png&quot; alt=&quot;sliders to control the pose&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;These sliders control the pose of the armorstand. Play around with them and see what happens!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;equipment&quot;&gt;Equipment&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2014-armorstand&#x2F;equipment.png&quot; alt=&quot;textfield for different types of armor&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Use these fields to give the armorstand some equipment. The inputs for boots, leggings, chestplate and helmet have dropdowns to help you select an item. If you want to show a different item, you need to find its name by hovering over an item in Minecraft with the advanced information enabled. You can enable the advanced display within Minecraft by pressing &lt;kbd&gt;F3&lt;&#x2F;kbd&gt;+&lt;kbd&gt;H&lt;&#x2F;kbd&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Give Code&lt;&#x2F;em&gt; is a special mode. If you click on the banner to minecraft-heads.com, you can select any head you like to place on your armorstand. If you want to place &lt;a href=&quot;https:&#x2F;&#x2F;minecraft-heads.com&#x2F;custom&#x2F;heads&#x2F;humanoid&#x2F;15397-kirby&quot;&gt;kirby&#x27;s&lt;&#x2F;a&gt; head on your armorstand, click &lt;em&gt;copy&lt;&#x2F;em&gt; right to the code labeled &lt;em&gt;Give-Code&lt;&#x2F;em&gt; and paste that into the helmet field in the armorstand generator.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;custom-name&quot;&gt;Custom Name&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2014-armorstand&#x2F;custom-name.png&quot; alt=&quot;textfield for a custom name&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;You can give the armorstand a custom name. Check the box to make the name appear over the armorstand.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;slot-interaction&quot;&gt;Slot Interaction&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2014-armorstand&#x2F;lock-slots.png&quot; alt=&quot;checkboxes for locking slots&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is a slightly more advanced feature. You can lock certain types of interactions with the armorstand here. For example: If you check the box &lt;em&gt;remove helmet&lt;&#x2F;em&gt; a player can place a helmet on the armorstand, he can replace the helmet with another one, but he will not be able to remove it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;generated-code&quot;&gt;Generated Code&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2014-armorstand&#x2F;generated-code.png&quot; alt=&quot;the generated code&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Once you are finished setting everything up, press the button &lt;em&gt;click to copy&lt;&#x2F;em&gt; to copy the code. Jump into a Minecraft world and press &lt;kbd&gt;T&lt;&#x2F;kbd&gt; to open the chat, and then press &lt;kbd&gt;CTRL&lt;&#x2F;kbd&gt;+&lt;kbd&gt;V&lt;&#x2F;kbd&gt; to paste the command. When you press &lt;kbd&gt;ENTER&lt;&#x2F;kbd&gt; the armorstand will appear where you are standing.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

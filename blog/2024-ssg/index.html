@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Static Site Generators Are Great | haselkern</title>
+  <meta name="title" content="Static Site Generators Are Great">
+<meta name="description" content="" />
+
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <link rel="alternate" type="application/atom+xml" title="haselkern" href="https://haselkern.com/atom.xml">
+  <style>  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title h1 {
+  font-size: 1.5em;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  .filter {
+    margin-bottom: 0;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  nav active {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  input {
+    font-size: 1rem;
+  }
+
+  main,article {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 0.875rem;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+  /* blog posts */
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+</style>
+  <script data-goatcounter="https://haselkern.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></head>
+<body>
+  <header>
+  
+
+  <a href="https://haselkern.com/" class="title">
+    <h1>haselkern</h1>
+  </a>
+  <nav>
+    
+
+  
+
+    
+      
+    
+      <a href="https://haselkern.com">Home</a>
+    
+      
+    
+      <a href="https://haselkern.com/blog/">Blog</a>
+    
+      
+    
+      <a href="https:&#x2F;&#x2F;github.com&#x2F;haselkern">GitHub</a>
+    
+      
+    
+      <a href="https:&#x2F;&#x2F;universeodon.com&#x2F;@haselkern">Mastodon</a>
+  </nav>
+</header>
+
+    <h1>Static Site Generators Are Great</h1>
+      <p>
+        <i>
+          <time datetime='2024-04-19T00:00:00+00:00' pubdate>2024-04-19</time>
+        </i>
+      </p>
+  <main>
+    <p>A static site generator is a piece of software that takes a bunch of input files and turns them into a static website.
+Often these input files consist of some content and a theme for making the content look nice.</p>
+<p>A static website is one where the content does not change.
+It is static.
+Everything you see on this website is just as when I last uploaded it to a server.</p>
+<p>This has obvious disadvantages.
+I cannot have comments on here or show something like the current number of followers I have on any platform,
+without resorting to JavaScript calling third-party resources.</p>
+<p>But it also has advantages.
+A static website is simple.
+After editing my content, I push a button on my computer to preview the website and another one to upload it.
+That's it.
+I'm currently (April 2024) using <a href="https://pages.github.com">GitHub Pages</a> which is free to use and really stable.
+I can go months without thinking about this website because I know that it won't go down or be overrun by hackers.</p>
+<p>A static site generator works best for me and can probably work for you too,
+if you are not afraid to touch the terminal and fiddle around with theme files.</p>
+<p>Now that I have switched the site generator once again,
+it might be fun to reflect on the changes this website went through.</p>
+<h2 id="my-website-journey">My Website Journey</h2>
+<p>I created this personal website in 2016 using a custom generator that was just called <code>build.py</code> at the time.
+It was written in Python and very simple.
+It would read in a single template HTML file
+and fill that with the content of every markdown file it found in the working tree.
+It had a special mode for generating an index file
+and was able to read JSON frontmatter.</p>
+<p>Here is the majestic beauty I built with it:</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2016-12-14.png" alt="a colorful website with big clickable tiles" /></p>
+<p>Eventually, I got fed up with this design and at the end of 2016 I implemented a cleaner look:</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2016-12-20.png" alt="a sparse website with a few links and a stylized font" /></p>
+<p>In July of 2017, I renamed the tool to <code>goliath</code>.
+I had big plans with it at the time
+and used the chance and motivation to refine the design of my website
+over a the course of a few months.</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2017-07-09.png" alt="a website with the title on the left side and a few links on the right" /></p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2017-10-18.png" alt="the same website, but now with the title at the top" /></p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2017-11-25.png" alt="the same website, but now with a tilted background box" /></p>
+<p>Writing your own generator is fun.
+But when tinkering with it you barely improve your website.
+Instead of writing something or creating a new project,
+you spend a lot of time tweaking the generator for your website.
+That's not a bad thing, but it was not wanted I wanted to keep doing.</p>
+<p>That's why in March of 2018, I switched to the first &quot;real&quot; static site generator: <a href="https://getpelican.com">Pelican</a>.
+It seemed simple enough and I was into Python at the time.
+I also changed the design a bit.</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2018-03-28.png" alt="the same website as before, but now with thinner fonts" /></p>
+<p>In September of 2018, I switched to &quot;Ivy&quot;.
+The package on PyPi has been replaced by a machine-learning library,
+which I find interesting.
+I don't think the design changed much, but I cannot rebuild the website for this state.</p>
+<p>In May 2019 I made the switch to <a href="https://gohugo.io">Hugo</a>.
+Hugo is great.
+It is fast, has lots of customization options
+and is easy to use thanks to its extensive documentation.</p>
+<p>This was also the first time I thought about what I wanted people to do on my website.
+In the screenshot, you can see some actions for every project,
+with the main action, like opening a website or downloading a file, being highlighted.</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2019-11-24.png" alt="a black-and-white website with a few of my projects" /></p>
+<p>Hugo is pretty great, but it also feels really big.
+There are so many different things to do with it, that it feels overwhelming at times.
+It can do everything I want, but I was looking for something simpler.</p>
+<p>Around this time I was beginning to get interested in Rust
+and eventually found <a href="https://www.getzola.org">Zola</a>,
+which is written in Rust.
+Being hyper-focused on that language I was eager to get some use out of software written in it.</p>
+<p>So in December 2019, a new design was built with Zola.
+I kept the idea of the previous design but made it more playful with some images and rounded boxes.</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2019-12-22.png" alt="a website with my projects, each project having an image and some actions" /></p>
+<p>In August 2022, I switched back to Hugo. God knows why.</p>
+<p>I also made the website much simpler.
+It featured a single stream of posts because I wanted to blog more.
+It is much easier and more fun to write a few lines about some topic,
+than it is to create and maintain a project.
+The previous design featured the same few projects for years.
+With this design, my projects were still accessible, but content would be the new focus.</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/2024-04-18.png" alt="a simple website showing a post preview, it is split into light and dark mode" /></p>
+<h2 id="what-now">What now?</h2>
+<p>Two years after the last design change, I'm writing this post
+and notice that I have written way less than I imagined I would.
+Finding the motivation to write things down is in itself a challenge.
+Having a half-baked website theme that does not properly support many parts of markdown did not help.
+I can only really blame myself here.
+I wanted to make the design my own
+and, again, spent more time tinkering with the website itself
+than writing about more interesting things.</p>
+<p>I decided to switch back to <a href="https://www.getzola.org">Zola</a>.
+I like the simplicity.
+Simplicity is also the main theme of the theme I'm using:
+<a href="https://zola-bearblog.netlify.app">Zola ʕ•ᴥ•ʔ Bear Blog</a>.</p>
+<p><img src="https://haselkern.com/blog/2024-ssg/zola-bear-preview.png" alt="zola bear blog preview" /></p>
+<p>It is inspired by a tiny blogging platform I found: <a href="https://bearblog.dev">bearblog.dev</a>.</p>
+<blockquote>
+<p>This is a blogging platform where words matter most.</p>
+<p>Shun the bloat of the current web, embrace the bear necessities.</p>
+</blockquote>
+<p>I think that's a great mission.
+Instead of getting blinded by flashy features,
+I just want a place to write down my thoughts.
+After all the changes this website went through in the previous years,
+I'm curious as to how long I will like this design.</p>
+
+  </main>
+  <p>
+        Tags:
+          <a href="https://haselkern.com/tags/web/">#web</a>
+  </p>
+</body>
+</html>
