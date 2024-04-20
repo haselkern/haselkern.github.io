@@ -48,16 +48,96 @@ and fill that with the content of every markdown file it found in the working tr
 It had a special mode for generating an index file
 and was able to read JSON frontmatter.&lt;&#x2F;p&gt;
 &lt;p&gt;Here is the majestic beauty I built with it:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-14.png&quot; alt=&quot;a colorful website with big clickable tiles&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-14.png&quot; title=&quot;a colorful website with big clickable tiles. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a colorful website with big clickable tiles&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-14.f9c35b5e547fdc33.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;1716;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-14.9e9f206401211212.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;Eventually, I got fed up with this design and at the end of 2016 I implemented a cleaner look:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-20.png&quot; alt=&quot;a sparse website with a few links and a stylized font&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-20.png&quot; title=&quot;a sparse website with a few links and a stylized font. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a sparse website with a few links and a stylized font&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-20.c8b21342de765f61.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;1548;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-20.68806b3887e8db55.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;In July of 2017, I renamed the tool to &lt;code&gt;goliath&lt;&#x2F;code&gt;.
 I had big plans with it at the time
 and used the chance and motivation to refine the design of my website
 over a the course of a few months.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-07-09.png&quot; alt=&quot;a website with the title on the left side and a few links on the right&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-10-18.png&quot; alt=&quot;the same website, but now with the title at the top&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-11-25.png&quot; alt=&quot;the same website, but now with a tilted background box&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-07-09.png&quot; title=&quot;a website with the title on the left side and a few links on the right. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a website with the title on the left side and a few links on the right&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-07-09.94f61a6eb3c4a10e.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;1094;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-07-09.39b0cad67431ff2a.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-10-18.png&quot; title=&quot;the same website, but now with the title at the top. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;the same website, but now with the title at the top&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-10-18.668ff564492a0006.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;1506;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-10-18.97e71abc000201dd.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-11-25.png&quot; title=&quot;the same website, but now with a tilted background box. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;the same website, but now with a tilted background box&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-11-25.c8607e9686f73cbe.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;1506;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-11-25.cad6b349a5a5d7fe.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;Writing your own generator is fun.
 But when tinkering with it you barely improve your website.
 Instead of writing something or creating a new project,
@@ -66,7 +146,23 @@ That&#x27;s not a bad thing, but it was not wanted I wanted to keep doing.&lt;&#
 &lt;p&gt;That&#x27;s why in March of 2018, I switched to the first &amp;quot;real&amp;quot; static site generator: &lt;a href=&quot;https:&#x2F;&#x2F;getpelican.com&quot;&gt;Pelican&lt;&#x2F;a&gt;.
 It seemed simple enough and I was into Python at the time.
 I also changed the design a bit.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2018-03-28.png&quot; alt=&quot;the same website as before, but now with thinner fonts&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2018-03-28.png&quot; title=&quot;the same website as before, but now with thinner fonts. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;the same website as before, but now with thinner fonts&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2018-03-28.6c7c77cf07fab270.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;1421;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2018-03-28.9024dc31bdff126a.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;In September of 2018, I switched to &amp;quot;Ivy&amp;quot;.
 The package on PyPi has been replaced by a machine-learning library,
 which I find interesting.
@@ -78,7 +174,23 @@ and is easy to use thanks to its extensive documentation.&lt;&#x2F;p&gt;
 &lt;p&gt;This was also the first time I thought about what I wanted people to do on my website.
 In the screenshot, you can see some actions for every project,
 with the main action, like opening a website or downloading a file, being highlighted.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-11-24.png&quot; alt=&quot;a black-and-white website with a few of my projects&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-11-24.png&quot; title=&quot;a black-and-white website with a few of my projects. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a black-and-white website with a few of my projects&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-11-24.782397678cff325b.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;2682;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-11-24.bb292f6929c24ce3.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;Hugo is pretty great, but it also feels really big.
 There are so many different things to do with it, that it feels overwhelming at times.
 It can do everything I want, but I was looking for something simpler.&lt;&#x2F;p&gt;
@@ -88,15 +200,48 @@ which is written in Rust.
 Being hyper-focused on that language I was eager to get some use out of software written in it.&lt;&#x2F;p&gt;
 &lt;p&gt;So in December 2019, a new design was built with Zola.
 I kept the idea of the previous design but made it more playful with some images and rounded boxes.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-12-22.png&quot; alt=&quot;a website with my projects, each project having an image and some actions&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-12-22.png&quot; title=&quot;a website with my projects, each project has an image and some actions. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a website with my projects, each project has an image and some actions&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-12-22.cea3c926fb6c207b.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2358px);
+                aspect-ratio: 2358&#x2F;2062;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-12-22.54a79e450d7b731d.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;In August 2022, I switched back to Hugo. God knows why.&lt;&#x2F;p&gt;
 &lt;p&gt;I also made the website much simpler.
 It featured a single stream of posts because I wanted to blog more.
 It is much easier and more fun to write a few lines about some topic,
 than it is to create and maintain a project.
 The previous design featured the same few projects for years.
-With this design, my projects were still accessible, but content would be the new focus.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2024-04-18.png&quot; alt=&quot;a simple website showing a post preview, it is split into light and dark mode&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+With this design, my projects were still accessible, but content would be the new focus.
+It also was the first design to feature a dark mode.&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2024-04-18.png&quot; title=&quot;a simple website showing a post preview, it is split into light and dark mode. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a simple website showing a post preview, it is split into light and dark mode&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2024-04-18.20a800d633129fd7.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2114px);
+                aspect-ratio: 2114&#x2F;1084;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2024-04-18.388804c5f41671ad.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;what-now&quot;&gt;What now?&lt;&#x2F;h2&gt;
 &lt;p&gt;Two years after the last design change, I&#x27;m writing this post
 and notice that I have written way less than I imagined I would.
@@ -108,9 +253,25 @@ and, again, spent more time tinkering with the website itself
 than writing about more interesting things.&lt;&#x2F;p&gt;
 &lt;p&gt;I decided to switch back to &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&quot;&gt;Zola&lt;&#x2F;a&gt;.
 I like the simplicity.
-Simplicity is also the main theme of the theme I&#x27;m using:
+Simplicity is also the main theme of the theme I&#x27;m using,
 &lt;a href=&quot;https:&#x2F;&#x2F;zola-bearblog.netlify.app&quot;&gt;Zola ʕ•ᴥ•ʔ Bear Blog&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;zola-bear-preview.png&quot; alt=&quot;zola bear blog preview&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;zola-bear-preview.png&quot; title=&quot;zola bear blog preview. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;zola bear blog preview&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;zola-bear-preview.621d549aa8cfb09e.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2880px);
+                aspect-ratio: 2880&#x2F;1800;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;zola-bear-preview.25632a9675a06801.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;It is inspired by a tiny blogging platform I found: &lt;a href=&quot;https:&#x2F;&#x2F;bearblog.dev&quot;&gt;bearblog.dev&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;This is a blogging platform where words matter most.&lt;&#x2F;p&gt;
@@ -144,7 +305,23 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
 &lt;p&gt;I decided to participate in &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&quot;&gt;Ludum Dare&lt;&#x2F;a&gt; this year. Ludum Dare is a biannual game jam, where you create a game catering to a theme that is announced when the jam starts. There are several categories, but I decided to participate in the &amp;quot;compo&amp;quot;, the competition, where you create a game from scratch, by yourself, in 48 hours.&lt;&#x2F;p&gt;
 &lt;p&gt;This years theme was &lt;em&gt;delivery&lt;&#x2F;em&gt;. I had some trouble coming up with ideas that felt fun and fit the theme, but after some tinkering I landed on my final idea: A pidgeon that needs to deliver packages in a village. That village is under attack by monsters, so you need to protect yourself with a gun. The more points you score, the more monsters will spawn, forcing you to be careful and also upgrade your weapon.&lt;&#x2F;p&gt;
 &lt;p&gt;I can now proudly present: Cassie, the carrier pidgeon. &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;cassie-the-carrier-pidgeon&quot;&gt;Download from Ludum Dare&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;banner.png&quot; alt=&quot;A pixel art pidgeon carrying a gattling gun under its wing.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;banner.png&quot; title=&quot;a pixel art pidgeon carrying a gattling gun under its wing. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a pixel art pidgeon carrying a gattling gun under its wing&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;banner.53e9821ebe6064a3.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 960px);
+                aspect-ratio: 960&#x2F;300;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;banner.299819944f88685f.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;Developing a game from scratch in such a small amount of time is challenging. There&#x27;s so many parts needed to make a playable game that you really need to focus on a tiny amount of features to complete it. To give you a rough idea of how I spent my weekend:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;I came up with an idea.&lt;&#x2F;li&gt;
@@ -172,14 +349,62 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;That&#x27;s so much stuff! And that does not even include all the fun ideas I had for different weapon types, more enemy types, different maps and so on. I really thought that I could at least implement different bullet types, but that was reduced to being able to upgrade your shooting speed.&lt;&#x2F;p&gt;
 &lt;p&gt;Drawing graphics was also interesting, since I&#x27;m not really that great at it. This is what the game looked like while I was still prototyping:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;dev02.png&quot; alt=&quot;Crude pixel art with a horrible color palette and very basic characters&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;dev02.png&quot; title=&quot;crude pixel art with a horrible color palette and very basic characters. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;crude pixel art with a horrible color palette and very basic characters&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;dev02.b4acc58f00844dd9.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2865px);
+                aspect-ratio: 2865&#x2F;1607;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;dev02.4318803dabf685f0.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;All the things are there, but you would probably be a bit more into it if the game looked nice. I turned to &lt;a href=&quot;https:&#x2F;&#x2F;lospec.com&quot;&gt;lospec.com&lt;&#x2F;a&gt;, a great resource for things about pixel art, and decided to go with the &lt;a href=&quot;https:&#x2F;&#x2F;lospec.com&#x2F;palette-list&#x2F;nyx8&quot;&gt;Nyx8&lt;&#x2F;a&gt; color palette to give my game a makeover. Limiting myself to a few colors to choose from does not guarantee that the game will look nice, but reduces the number of artistic crimes I am able to commit. This is the game after I redrew everything:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;game01.png&quot; alt=&quot;Still crude pixel art game, but now with consistent muted purple and orange colors.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;game01.png&quot; title=&quot;still crude pixel art game, but now with consistent muted purple and orange colors. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;still crude pixel art game, but now with consistent muted purple and orange colors&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;game01.d7e9c5badbf68c0a.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 2873px);
+                aspect-ratio: 2873&#x2F;1621;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;game01.b8f1364fa0610127.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 &lt;p&gt;Doing all the things above in only 48 hours was definitely stressful. I had a lot of fun and now can brag about a new game, but I underestimated how much the limited time influenced the amount of fun I had. The jam felt less like a fun weekend activity and more like an extended work week.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;cassie-the-carrier-pidgeon&quot;&gt;Download the game from the  Ludum Dare website&lt;&#x2F;a&gt; if you want to try it out and maybe leave a little feedback there if you like.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;A few days after the jam &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;popcorn-odyssey&#x2F;i-made-a-little-art-for-some-of-my-favorite-games-in-this-jam&quot;&gt;0X_VOID_X0 made some awesome fanart&lt;&#x2F;a&gt; of their favorite games which I just had to share. Thank you!&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;fanart.png&quot; alt=&quot;Characters from several games, including a mean looking Cassie&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;fanart.png&quot; title=&quot;characters from several games, including a mean looking Cassie. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;characters from several games, including a mean looking Cassie&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;fanart.64265e05d2b5ad2c.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 800px);
+                aspect-ratio: 800&#x2F;512;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;fanart.8f3e3ecf74fbe6e5.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
 </content>
         
     </entry>
@@ -314,11 +539,61 @@ and adding some more features over time.&lt;&#x2F;p&gt;
 &lt;p&gt;The &lt;a href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.haselkern.android.game.spaceexplore&quot;&gt;original PlayStore page&lt;&#x2F;a&gt; is now offline because I did not have time to maintain it.&lt;&#x2F;p&gt;
 &lt;p&gt;I was able to dig up the APK file, so if you are using an Android device you might still be able to install it: &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;trash-belt.apk&quot;&gt;trash-belt.apk&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;I also found the header image I used for the store page:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;header.png&quot; alt=&quot;header image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;And here are some screenshots from the game:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot1.jpg&quot; alt=&quot;menu&quot; &#x2F;&gt;
-&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot2.jpg&quot; alt=&quot;in game&quot; &#x2F;&gt;
-&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot3.jpg&quot; alt=&quot;game over&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot1.jpg&quot; title=&quot;menu. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;menu&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot1.8b88a5a6d1732596.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 333px);
+                aspect-ratio: 333&#x2F;592;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot1.96b012dfb523b963.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot2.jpg&quot; title=&quot;in game. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;in game&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot2.c18196874a2bfe57.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 333px);
+                aspect-ratio: 333&#x2F;592;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot2.9329f6357b1a37ff.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot3.jpg&quot; title=&quot;game over. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;game over&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot3.a5b8b09857fe30c3.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 333px);
+                aspect-ratio: 333&#x2F;592;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot3.574a6b43e008e1db.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;&#x2F;p&gt;
 </content>
         
     </entry>
