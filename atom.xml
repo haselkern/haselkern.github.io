@@ -4,8 +4,197 @@
     <link rel="self" type="application/atom+xml" href="https://haselkern.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://haselkern.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-04-19T00:00:00+00:00</updated>
+    <updated>2024-04-21T00:00:00+00:00</updated>
     <id>https://haselkern.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Colorful Huegene Experiments</title>
+        <published>2024-04-21T00:00:00+00:00</published>
+        <updated>2024-04-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-huegene/"/>
+        <id>https://haselkern.com/blog/2024-huegene/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2024-huegene/">&lt;p&gt;I came up with an idea for generating images.&lt;&#x2F;p&gt;
+&lt;p&gt;Start by creating an empty image
+and placing one or more seed pixels with a color of your choice in it.
+Every empty pixel around these pixels is now part of a front that will be expanded outwards. Until the whole image is filled, pick a pixel in the front and fill it with color. All empty pixels around it get added to the front.&lt;&#x2F;p&gt;
+&lt;p&gt;This is known as the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Flood_fill&quot;&gt;flood-fill algorithm (Wikipedia)&lt;&#x2F;a&gt; because you flood the image with paint.
+There are some helpful visualizations on the Wikipedia page.&lt;&#x2F;p&gt;
+&lt;p&gt;Filling an image with a single color is not that interesting,
+which is where my idea comes in:
+Every pixel remembers its parent and gets filled with a color that differs slightly from its parent&#x27;s color.&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;mutation.drawio.png&quot; title=&quot;a diagram showing the spread of color from a seed. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a diagram showing the spread of color from a seed&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;mutation.drawio.03b62672f7dc8a92.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 1124px);
+                aspect-ratio: 1124&#x2F;484;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;mutation.drawio.8d008250acefae24.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;This is easy to implement, so here is my first try. I placed a single black pixel in the middle and then filled the whole image.&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;deterministic-front.jpg&quot; title=&quot;colorful vertical lines. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;colorful vertical lines&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;deterministic-front.da7c5861bebb7970.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 1920px);
+                aspect-ratio: 1920&#x2F;1080;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;deterministic-front.b105eb89b5bc3b46.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;This looks less dynamic than I had anticipated.
+But it can be explained:
+I always pick the first pixel in the front to fill next.
+This linear strategy results in a linear-looking image.
+By picking a random pixel in the front, the image looks much more organic.&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;basic.jpg&quot; title=&quot;randomized gradients radiating outward from the center. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;randomized gradients radiating outward from the center&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;basic.f6db27804f1a8f38.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 1920px);
+                aspect-ratio: 1920&#x2F;1080;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;basic.d4572761bc24eb66.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;By reducing the strength of changing the color, you can get a smoother image.
+For this image, I picked an orange seed and moved it off-center.&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;pleasing.png&quot; title=&quot;orange colors radiating from a point to the left side of the image. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;orange colors radiating from a point to the left side of the image&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;pleasing.e09c49d619ed7f4c.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 1920px);
+                aspect-ratio: 1920&#x2F;1080;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;pleasing.8c8e599a12e8ef2c.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;Here is an image with multiple seeds.&lt;&#x2F;p&gt;
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;two-seeds.jpg&quot; title=&quot;blue colors on the left, orange colors on the right, separated by a diagonal line. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;blue colors on the left, orange colors on the right, separated by a diagonal line&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;two-seeds.1528b3fbfa8916c6.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 1920px);
+                aspect-ratio: 1920&#x2F;1080;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;two-seeds.010c359ecd28bb4b.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;In all previous images, the front was filled with colors that were changed randomly from each pixel&#x27;s parent.
+For the following two images, I made up a new set of rules.&lt;&#x2F;p&gt;
+&lt;p&gt;Inside a horizontal strip, the horizon I call it, the color is changed randomly, as before.
+For everything above the horizon, the color should gradually change more towards a deep blue.
+For everything below the horizon, the color should quickly change to black.&lt;&#x2F;p&gt;
+&lt;p&gt;This set of rules works out pretty well.
+Combined with a yellow seed on the horizon, this looks like a sunset.
+The edge of the horizon is colorful,
+making it look like forests and mountains are catching the last rays of the sun.&lt;&#x2F;p&gt;
+&lt;p&gt;
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;sunset.png&quot; title=&quot;a scene that is reminiscent of a sunset. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;a scene that is reminiscent of a sunset&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset.470e6307028e7444.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 1920px);
+                aspect-ratio: 1920&#x2F;1080;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset.e3364f2ab4581216.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+
+
+
+&lt;p&gt;
+    &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;sunset_big.jpg&quot; title=&quot;another sunset. click for full resolution image.&quot;&gt;
+        &lt;img
+            alt=&quot;another sunset&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset_big.cf43bec690260075.jpg&quot;
+            loading=&quot;lazy&quot;
+            style=&quot;
+                width: min(100%, 3840px);
+                aspect-ratio: 3840&#x2F;2160;
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset_big.d347dcb8d7bdca79.jpg);
+                background-size: 100% 100%;
+            &quot;
+        &gt;
+    &lt;&#x2F;a&gt;
+&lt;&#x2F;p&gt;
+&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;huegene&quot;&gt;Huegene&lt;&#x2F;h1&gt;
+&lt;p&gt;The idea of modifying a flood-fill is not new.
+Through &lt;em&gt;a lot&lt;&#x2F;em&gt; of searching the web, I was able to find the first mention of a similar algorithm by Dave Ackley,
+which is where I got the name &lt;em&gt;Huegene&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;From &lt;a href=&quot;https:&#x2F;&#x2F;web.archive.org&#x2F;web&#x2F;20210915185932&#x2F;http:&#x2F;&#x2F;robust.cs.unm.edu&#x2F;doku.php?id=ulam:demos:coevolution&quot;&gt;http:&#x2F;&#x2F;robust.cs.unm.edu&#x2F;doku.php?id=ulam:demos:coevolution (Web Archive)&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In 2002, Dave Ackley developed a coevolution simulation project called Huegene for a C++ programming course.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The model described in the article presents a simulation of plants and herbivores.
+The plants behave like the pixels in the algorithm I have shown above,
+spreading and changing color.
+Additionally, there are herbivores,
+which can move around and eat plants that have a similar color to them.
+When producing offspring, the child will have a slightly different color from the parent.
+The goal of the simulation is to show the herbivores and plants adapting to changing conditions in the biome around them.
+You can see it in action in this video by Ackley,
+which concludes this post on another colorful note.&lt;&#x2F;p&gt;
+&lt;div style=&quot;position: relative; overflow: hidden; width: 100%; padding-top: 56.25%;&quot;&gt;
+    &lt;iframe style=&quot;position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;&quot; width=&quot;100%&quot;
+        height=&quot;100%&quot;
+        src=&quot;https:&#x2F;&#x2F;www.youtube-nocookie.com&#x2F;embed&#x2F;jQaXtbrVNaU&quot;
+        webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Static Site Generators Are Great</title>
         <published>2024-04-19T00:00:00+00:00</published>

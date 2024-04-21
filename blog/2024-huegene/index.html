@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colorful Huegene Experiments | haselkern</title>
+  <meta name="title" content="Colorful Huegene Experiments">
+<meta name="description" content="" />
+
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <link rel="alternate" type="application/atom+xml" title="haselkern" href="https://haselkern.com/atom.xml">
+  <style>  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title h1 {
+  font-size: 1.5em;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  .filter {
+    margin-bottom: 0;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  nav active {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  input {
+    font-size: 1rem;
+  }
+
+  main,article {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 0.875rem;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+  /* blog posts */
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+</style>
+  <script data-goatcounter="https://haselkern.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="icon" href="/haselkern.svg">
+<link rel="mask-icon" href="/haselkern.svg" color="#000000">
+</head>
+<body>
+  <header>
+  
+
+  <a href="https://haselkern.com/" class="title">
+    <h1>haselkern</h1>
+  </a>
+  <nav>
+    
+
+  
+
+    
+      
+    
+      <a href="https://haselkern.com">Home</a>
+    
+      
+    
+      <a href="https://haselkern.com/blog/">Blog</a>
+    
+      
+    
+      <a href="https:&#x2F;&#x2F;github.com&#x2F;haselkern">GitHub</a>
+    
+      
+    
+      <a href="https:&#x2F;&#x2F;universeodon.com&#x2F;@haselkern">Mastodon</a>
+  </nav>
+</header>
+
+    <h1>Colorful Huegene Experiments</h1>
+      <p>
+        <i>
+          <time datetime='2024-04-21T00:00:00+00:00' pubdate>2024-04-21</time>
+        </i>
+      </p>
+  <main>
+    <p>I came up with an idea for generating images.</p>
+<p>Start by creating an empty image
+and placing one or more seed pixels with a color of your choice in it.
+Every empty pixel around these pixels is now part of a front that will be expanded outwards. Until the whole image is filled, pick a pixel in the front and fill it with color. All empty pixels around it get added to the front.</p>
+<p>This is known as the <a href="https://en.wikipedia.org/wiki/Flood_fill">flood-fill algorithm (Wikipedia)</a> because you flood the image with paint.
+There are some helpful visualizations on the Wikipedia page.</p>
+<p>Filling an image with a single color is not that interesting,
+which is where my idea comes in:
+Every pixel remembers its parent and gets filled with a color that differs slightly from its parent's color.</p>
+
+
+<p>
+    <a href="https://haselkern.com/blog/2024-huegene/mutation.drawio.png" title="a diagram showing the spread of color from a seed. click for full resolution image.">
+        <img
+            alt="a diagram showing the spread of color from a seed"
+            src="https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;mutation.drawio.03b62672f7dc8a92.jpg"
+            loading="lazy"
+            style="
+                width: min(100%, 1124px);
+                aspect-ratio: 1124/484;
+                background-image: url(https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;mutation.drawio.8d008250acefae24.jpg);
+                background-size: 100% 100%;
+            "
+        >
+    </a>
+</p>
+<p>This is easy to implement, so here is my first try. I placed a single black pixel in the middle and then filled the whole image.</p>
+
+
+<p>
+    <a href="https://haselkern.com/blog/2024-huegene/deterministic-front.jpg" title="colorful vertical lines. click for full resolution image.">
+        <img
+            alt="colorful vertical lines"
+            src="https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;deterministic-front.da7c5861bebb7970.jpg"
+            loading="lazy"
+            style="
+                width: min(100%, 1920px);
+                aspect-ratio: 1920/1080;
+                background-image: url(https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;deterministic-front.b105eb89b5bc3b46.jpg);
+                background-size: 100% 100%;
+            "
+        >
+    </a>
+</p>
+<p>This looks less dynamic than I had anticipated.
+But it can be explained:
+I always pick the first pixel in the front to fill next.
+This linear strategy results in a linear-looking image.
+By picking a random pixel in the front, the image looks much more organic.</p>
+
+
+<p>
+    <a href="https://haselkern.com/blog/2024-huegene/basic.jpg" title="randomized gradients radiating outward from the center. click for full resolution image.">
+        <img
+            alt="randomized gradients radiating outward from the center"
+            src="https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;basic.f6db27804f1a8f38.jpg"
+            loading="lazy"
+            style="
+                width: min(100%, 1920px);
+                aspect-ratio: 1920/1080;
+                background-image: url(https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;basic.d4572761bc24eb66.jpg);
+                background-size: 100% 100%;
+            "
+        >
+    </a>
+</p>
+<p>By reducing the strength of changing the color, you can get a smoother image.
+For this image, I picked an orange seed and moved it off-center.</p>
+
+
+<p>
+    <a href="https://haselkern.com/blog/2024-huegene/pleasing.png" title="orange colors radiating from a point to the left side of the image. click for full resolution image.">
+        <img
+            alt="orange colors radiating from a point to the left side of the image"
+            src="https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;pleasing.e09c49d619ed7f4c.jpg"
+            loading="lazy"
+            style="
+                width: min(100%, 1920px);
+                aspect-ratio: 1920/1080;
+                background-image: url(https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;pleasing.8c8e599a12e8ef2c.jpg);
+                background-size: 100% 100%;
+            "
+        >
+    </a>
+</p>
+<p>Here is an image with multiple seeds.</p>
+
+
+<p>
+    <a href="https://haselkern.com/blog/2024-huegene/two-seeds.jpg" title="blue colors on the left, orange colors on the right, separated by a diagonal line. click for full resolution image.">
+        <img
+            alt="blue colors on the left, orange colors on the right, separated by a diagonal line"
+            src="https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;two-seeds.1528b3fbfa8916c6.jpg"
+            loading="lazy"
+            style="
+                width: min(100%, 1920px);
+                aspect-ratio: 1920/1080;
+                background-image: url(https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;two-seeds.010c359ecd28bb4b.jpg);
+                background-size: 100% 100%;
+            "
+        >
+    </a>
+</p>
+<p>In all previous images, the front was filled with colors that were changed randomly from each pixel's parent.
+For the following two images, I made up a new set of rules.</p>
+<p>Inside a horizontal strip, the horizon I call it, the color is changed randomly, as before.
+For everything above the horizon, the color should gradually change more towards a deep blue.
+For everything below the horizon, the color should quickly change to black.</p>
+<p>This set of rules works out pretty well.
+Combined with a yellow seed on the horizon, this looks like a sunset.
+The edge of the horizon is colorful,
+making it look like forests and mountains are catching the last rays of the sun.</p>
+<p>
+
+<p>
+    <a href="https://haselkern.com/blog/2024-huegene/sunset.png" title="a scene that is reminiscent of a sunset. click for full resolution image.">
+        <img
+            alt="a scene that is reminiscent of a sunset"
+            src="https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;sunset.470e6307028e7444.jpg"
+            loading="lazy"
+            style="
+                width: min(100%, 1920px);
+                aspect-ratio: 1920/1080;
+                background-image: url(https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;sunset.e3364f2ab4581216.jpg);
+                background-size: 100% 100%;
+            "
+        >
+    </a>
+</p>
+
+
+
+<p>
+    <a href="https://haselkern.com/blog/2024-huegene/sunset_big.jpg" title="another sunset. click for full resolution image.">
+        <img
+            alt="another sunset"
+            src="https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;sunset_big.cf43bec690260075.jpg"
+            loading="lazy"
+            style="
+                width: min(100%, 3840px);
+                aspect-ratio: 3840/2160;
+                background-image: url(https:&#x2F;&#x2F;haselkern.com&#x2F;processed_images&#x2F;sunset_big.d347dcb8d7bdca79.jpg);
+                background-size: 100% 100%;
+            "
+        >
+    </a>
+</p>
+</p>
+<h1 id="huegene">Huegene</h1>
+<p>The idea of modifying a flood-fill is not new.
+Through <em>a lot</em> of searching the web, I was able to find the first mention of a similar algorithm by Dave Ackley,
+which is where I got the name <em>Huegene</em>.</p>
+<p>From <a href="https://web.archive.org/web/20210915185932/http://robust.cs.unm.edu/doku.php?id=ulam:demos:coevolution">http://robust.cs.unm.edu/doku.php?id=ulam:demos:coevolution (Web Archive)</a>:</p>
+<blockquote>
+<p>In 2002, Dave Ackley developed a coevolution simulation project called Huegene for a C++ programming course.</p>
+</blockquote>
+<p>The model described in the article presents a simulation of plants and herbivores.
+The plants behave like the pixels in the algorithm I have shown above,
+spreading and changing color.
+Additionally, there are herbivores,
+which can move around and eat plants that have a similar color to them.
+When producing offspring, the child will have a slightly different color from the parent.
+The goal of the simulation is to show the herbivores and plants adapting to changing conditions in the biome around them.
+You can see it in action in this video by Ackley,
+which concludes this post on another colorful note.</p>
+<div style="position: relative; overflow: hidden; width: 100%; padding-top: 56.25%;">
+    <iframe style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;" width="100%"
+        height="100%"
+        src="https://www.youtube-nocookie.com/embed/jQaXtbrVNaU"
+        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+  </main>
+  <p>
+        Tags:
+          <a href="https://haselkern.com/tags/programming/">#programming</a>
+          <a href="https://haselkern.com/tags/creative/">#creative</a>
+  </p>
+</body>
+</html>
