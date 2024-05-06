@@ -614,36 +614,36 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
         <id>https://haselkern.com/blog/2022-protocol-api-errors/</id>
         
         <content type="html" xml:base="https://haselkern.com/blog/2022-protocol-api-errors/">&lt;p&gt;I visit the &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;programming&#x2F;&quot;&gt;programming subreddit&lt;&#x2F;a&gt; from time to time to check for any projects that might be worth looking into, when I stumbled on something interesting. People were making fun of APIs that returned a status code 404 (NOT FOUND) inside the response, while having a HTTP status 200 (OK).&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;some&#x2F;resource
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 200 OK
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;content-type:&lt;&#x2F;span&gt;&lt;span&gt; application&#x2F;json
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;some&#x2F;resource
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 200 OK
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;content-type:&lt;&#x2F;span&gt;&lt;span&gt; application&#x2F;json
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;{
-&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;status&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; 404,
-&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;data&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; null
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;status&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; 404,
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;data&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; null
 &lt;&#x2F;span&gt;&lt;span&gt;}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;(I like using &lt;a href=&quot;https:&#x2F;&#x2F;curlie.io&quot;&gt;curlie&lt;&#x2F;a&gt; because it shows more information out of the box like I would expect curl to work, including some highlighting.)&lt;&#x2F;p&gt;
 &lt;p&gt;It was argued that in this case the API should just return HTTP status 404, without any content, because having multiple status codes is just silly. I would disagree, but lets look at an example first. Say I can get details about some product by its ID from an API:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;producs&#x2F;123
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 404 Not Found
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;producs&#x2F;123
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 404 Not Found
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Hm, there seems to be no product with ID 123. Oh wait, I just made a typo, it&#x27;s obviously &lt;code&gt;products&lt;&#x2F;code&gt;, not &lt;code&gt;producs&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;products&#x2F;123
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 404 Not Found
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;products&#x2F;123
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 404 Not Found
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;So, uh, there is no product with ID 123? I think. Or maybe the endpoint does not exist. And that&#x27;s a problem you cannot really solve by cramming results from your API into an HTTP status code, which is why I think that API errors should not be treated as protocol errors.&lt;&#x2F;p&gt;
 &lt;p&gt;There are two conceptual layers at play here, the HTTP layer that transports some bytes with metadata from A to B and your application on top that wants to transport structured information using the layer below. Confusing status codes from one layer with those from the other one is a burden for everyone involved. The initial example I gave was actually pretty close to a response I would expect from a nice API server, but using status 404 has no place in application data, were such an HTTP specific code is not relevant. Something like this would probably be more readable:&lt;&#x2F;p&gt;
-&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;products&#x2F;123
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 200 OK
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;content-type:&lt;&#x2F;span&gt;&lt;span&gt; application&#x2F;json
+&lt;pre data-lang=&quot;sh&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; curlie api.example&#x2F;products&#x2F;123
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;HTTP&#x2F;1.1&lt;&#x2F;span&gt;&lt;span&gt; 200 OK
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;content-type:&lt;&#x2F;span&gt;&lt;span&gt; application&#x2F;json
 &lt;&#x2F;span&gt;&lt;span&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;{
-&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;error&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span&gt;{
-&lt;&#x2F;span&gt;&lt;span&gt;        &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;code&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;not_found&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;,
-&lt;&#x2F;span&gt;&lt;span&gt;        &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;message&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;The requested product could not be found.&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;error&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;code&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;not_found&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;,
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;message&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;The requested product could not be found.&amp;quot;
 &lt;&#x2F;span&gt;&lt;span&gt;    },
-&lt;&#x2F;span&gt;&lt;span&gt;    &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;data&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; null
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;data&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;:&lt;&#x2F;span&gt;&lt;span&gt; null
 &lt;&#x2F;span&gt;&lt;span&gt;}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Notice how the HTTP status code is 200 because transport was okay, but the response contains an application specific error. This is also the approach &lt;a href=&quot;https:&#x2F;&#x2F;graphql.org&quot;&gt;GraphQL&lt;&#x2F;a&gt; has taken, were servers usually only have a single endpoint you can post to. This endpoint always returns HTTP 200 if the server works, with relevant data being encoded in the request and response data.&lt;&#x2F;p&gt;

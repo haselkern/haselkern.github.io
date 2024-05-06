@@ -9,7 +9,7 @@
 
   <meta name="referrer" content="no-referrer-when-downgrade">
   <link rel="alternate" type="application/atom+xml" title="haselkern" href="https://haselkern.com/atom.xml">
-  <style>  body {
+  <style>body {
     font-family: Verdana, sans-serif;
     margin: auto;
     padding: 20px;
@@ -20,138 +20,139 @@
     overflow-wrap: break-word;
     line-height: 1.5;
     color: #444;
-  }
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong,
-  b {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
     color: #222;
-  }
+}
 
-  a {
+a {
     color: #3273dc;
-  }
+}
 
-  .title {
+.title {
     text-decoration: none;
     border: 0;
-  }
+}
 
-  .title h1 {
-  font-size: 1.5em;
-  }
+.title h1 {
+    font-size: 1.5em;
+}
 
-  .title span {
+.title span {
     font-weight: 400;
-  }
+}
 
-  .filter {
+.filter {
     margin-bottom: 0;
-  }
+}
 
-  nav a {
+nav a {
     margin-right: 10px;
-  }
+}
 
-  nav active {
+nav active {
     font-weight: bold;
     margin-right: 10px;
-  }
+}
 
-  textarea {
+textarea {
     width: 100%;
     font-size: 1rem;
-  }
+}
 
-  input {
+input {
     font-size: 1rem;
-  }
+}
 
-  main,article {
+main,
+article {
     line-height: 1.6;
-  }
+}
 
-  table {
+table {
     width: 100%;
-  }
+}
 
-  img {
+img {
     max-width: 100%;
-  }
+}
 
-  code {
+code {
     padding: 2px 5px;
     background-color: #f2f2f2;
-  }
+}
 
-  pre code {
+pre code {
     color: #222;
     display: block;
     padding: 20px;
     white-space: pre-wrap;
     font-size: 0.875rem;
     overflow-x: auto;
-  }
+}
 
-  div.highlight pre {
+div.highlight pre {
     background-color: initial;
     color: initial;
-  }
+}
 
-  div.highlight code {
+div.highlight code {
     background-color: unset;
     color: unset;
-  }
+}
 
-  blockquote {
+blockquote {
     border-left: 1px solid #999;
     color: #222;
     padding-left: 20px;
     font-style: italic;
-  }
+}
 
-  footer {
+footer {
     padding: 25px;
     text-align: center;
-  }
+}
 
-  .helptext {
+.helptext {
     color: #777;
     font-size: small;
-  }
+}
 
-  .errorlist {
+.errorlist {
     color: #eba613;
     font-size: small;
-  }
+}
 
-  /* blog posts */
-  ul.blog-posts {
+/* blog posts */
+ul.blog-posts {
     list-style-type: none;
     padding: unset;
-  }
+}
 
-  ul.blog-posts li {
+ul.blog-posts li {
     display: flex;
-  }
+}
 
-  ul.blog-posts li span {
+ul.blog-posts li span {
     flex: 0 0 130px;
-  }
+}
 
-  ul.blog-posts li a:visited {
+ul.blog-posts li a:visited {
     color: #8b6fcb;
-  }
+}
 
-  @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     body {
-      background-color: #333;
-      color: #ddd;
+        background-color: #333;
+        color: #ddd;
     }
 
     h1,
@@ -162,40 +163,46 @@
     h6,
     strong,
     b {
-      color: #eee;
+        color: #eee;
     }
 
     a {
-      color: #8cc2dd;
+        color: #8cc2dd;
     }
 
     code {
-      background-color: #777;
+        background-color: #777;
     }
 
     pre code {
-      color: #ddd;
+        color: #ddd;
     }
 
     blockquote {
-      color: #ccc;
+        color: #ccc;
     }
 
     textarea,
     input {
-      background-color: #252525;
-      color: #ddd;
+        background-color: #252525;
+        color: #ddd;
     }
 
     .helptext {
-      color: #aaa;
+        color: #aaa;
     }
-  }
+}
 </style>
   <script data-goatcounter="https://haselkern.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<link rel="icon" href="/haselkern.svg">
-<link rel="mask-icon" href="/haselkern.svg" color="#000000">
+<link rel="icon" href="/haselkern.svg" />
+<link rel="mask-icon" href="/haselkern.svg" color="#000000" />
 
+<style>
+    code {
+        background-color: #222;
+        color: #ddd !important;
+    }
+</style>
 </head>
 <body>
   <header>
@@ -236,36 +243,36 @@
       </p>
   <main>
     <p>I visit the <a href="https://www.reddit.com/r/programming/">programming subreddit</a> from time to time to check for any projects that might be worth looking into, when I stumbled on something interesting. People were making fun of APIs that returned a status code 404 (NOT FOUND) inside the response, while having a HTTP status 200 (OK).</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span> curlie api.example/some/resource
-</span><span style="color:#bf616a;">HTTP/1.1</span><span> 200 OK
-</span><span style="color:#bf616a;">content-type:</span><span> application/json
+<pre data-lang="sh" style="background-color:#2e3440;color:#d8dee9;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#88c0d0;">$</span><span> curlie api.example/some/resource
+</span><span style="color:#88c0d0;">HTTP/1.1</span><span> 200 OK
+</span><span style="color:#88c0d0;">content-type:</span><span> application/json
 </span><span>
 </span><span>{
-</span><span>    &quot;</span><span style="color:#a3be8c;">status</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 404,
-</span><span>    &quot;</span><span style="color:#a3be8c;">data</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> null
+</span><span>    </span><span style="color:#a3be8c;">&quot;status&quot;</span><span style="color:#88c0d0;">:</span><span> 404,
+</span><span>    </span><span style="color:#a3be8c;">&quot;data&quot;</span><span style="color:#88c0d0;">:</span><span> null
 </span><span>}
 </span></code></pre>
 <p>(I like using <a href="https://curlie.io">curlie</a> because it shows more information out of the box like I would expect curl to work, including some highlighting.)</p>
 <p>It was argued that in this case the API should just return HTTP status 404, without any content, because having multiple status codes is just silly. I would disagree, but lets look at an example first. Say I can get details about some product by its ID from an API:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span> curlie api.example/producs/123
-</span><span style="color:#bf616a;">HTTP/1.1</span><span> 404 Not Found
+<pre data-lang="sh" style="background-color:#2e3440;color:#d8dee9;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#88c0d0;">$</span><span> curlie api.example/producs/123
+</span><span style="color:#88c0d0;">HTTP/1.1</span><span> 404 Not Found
 </span></code></pre>
 <p>Hm, there seems to be no product with ID 123. Oh wait, I just made a typo, it's obviously <code>products</code>, not <code>producs</code>.</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span> curlie api.example/products/123
-</span><span style="color:#bf616a;">HTTP/1.1</span><span> 404 Not Found
+<pre data-lang="sh" style="background-color:#2e3440;color:#d8dee9;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#88c0d0;">$</span><span> curlie api.example/products/123
+</span><span style="color:#88c0d0;">HTTP/1.1</span><span> 404 Not Found
 </span></code></pre>
 <p>So, uh, there is no product with ID 123? I think. Or maybe the endpoint does not exist. And that's a problem you cannot really solve by cramming results from your API into an HTTP status code, which is why I think that API errors should not be treated as protocol errors.</p>
 <p>There are two conceptual layers at play here, the HTTP layer that transports some bytes with metadata from A to B and your application on top that wants to transport structured information using the layer below. Confusing status codes from one layer with those from the other one is a burden for everyone involved. The initial example I gave was actually pretty close to a response I would expect from a nice API server, but using status 404 has no place in application data, were such an HTTP specific code is not relevant. Something like this would probably be more readable:</p>
-<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span> curlie api.example/products/123
-</span><span style="color:#bf616a;">HTTP/1.1</span><span> 200 OK
-</span><span style="color:#bf616a;">content-type:</span><span> application/json
+<pre data-lang="sh" style="background-color:#2e3440;color:#d8dee9;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#88c0d0;">$</span><span> curlie api.example/products/123
+</span><span style="color:#88c0d0;">HTTP/1.1</span><span> 200 OK
+</span><span style="color:#88c0d0;">content-type:</span><span> application/json
 </span><span>
 </span><span>{
-</span><span>    &quot;</span><span style="color:#a3be8c;">error</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>{
-</span><span>        &quot;</span><span style="color:#a3be8c;">code</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">not_found</span><span>&quot;,
-</span><span>        &quot;</span><span style="color:#a3be8c;">message</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">The requested product could not be found.</span><span>&quot;
+</span><span>    </span><span style="color:#a3be8c;">&quot;error&quot;</span><span style="color:#88c0d0;">: </span><span>{
+</span><span>        </span><span style="color:#a3be8c;">&quot;code&quot;</span><span>: </span><span style="color:#a3be8c;">&quot;not_found&quot;</span><span style="color:#eceff4;">,
+</span><span>        </span><span style="color:#a3be8c;">&quot;message&quot;</span><span>: </span><span style="color:#a3be8c;">&quot;The requested product could not be found.&quot;
 </span><span>    },
-</span><span>    &quot;</span><span style="color:#a3be8c;">data</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> null
+</span><span>    </span><span style="color:#a3be8c;">&quot;data&quot;</span><span style="color:#88c0d0;">:</span><span> null
 </span><span>}
 </span></code></pre>
 <p>Notice how the HTTP status code is 200 because transport was okay, but the response contains an application specific error. This is also the approach <a href="https://graphql.org">GraphQL</a> has taken, were servers usually only have a single endpoint you can post to. This endpoint always returns HTTP 200 if the server works, with relevant data being encoded in the request and response data.</p>
@@ -278,5 +285,7 @@
           <a href="https://haselkern.com/tags/programming/">#programming</a>
           <a href="https://haselkern.com/tags/web/">#web</a>
   </p>
+<footer>
+</footer>
 </body>
 </html>
