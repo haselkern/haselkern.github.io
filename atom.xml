@@ -4,8 +4,74 @@
     <link rel="self" type="application/atom+xml" href="https://haselkern.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://haselkern.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-04-21T00:00:00+00:00</updated>
+    <updated>2024-07-14T00:00:00+00:00</updated>
     <id>https://haselkern.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Reject Operator Precedence</title>
+        <published>2024-07-14T00:00:00+00:00</published>
+        <updated>2024-07-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-operator-precedence/"/>
+        <id>https://haselkern.com/blog/2024-operator-precedence/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2024-operator-precedence/">&lt;p&gt;The precedence of operators defines the order
+in which the operators in an expression are evaluated.
+We know this from real life as &lt;code&gt;2 + 3 * 4 = 2 + (3 * 4) = 14&lt;&#x2F;code&gt;
+which is not equal to &lt;code&gt;(2 + 3) * 4 = 20&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I added a parenthesis to emphasize the order of operations.&lt;&#x2F;p&gt;
+&lt;p&gt;Programming languages have rules about operator precedence as well.
+Each language defines its own operator precedence rules,
+(e.g.:
+&lt;a href=&quot;https:&#x2F;&#x2F;en.cppreference.com&#x2F;w&#x2F;c&#x2F;language&#x2F;operator_precedence&quot;&gt;C&lt;&#x2F;a&gt;,
+&lt;a href=&quot;https:&#x2F;&#x2F;go.dev&#x2F;ref&#x2F;spec#Operator_precedence&quot;&gt;Go&lt;&#x2F;a&gt;,
+&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;reference&#x2F;expressions.html#expression-precedence&quot;&gt;Rust&lt;&#x2F;a&gt;)
+which is great because each language is unique and follows its own goals.
+It&#x27;s also terrible because when you switch between languages
+you never quite know what the exact rules are.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s look at an example to see why operator precedence can be confusing.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2e3440;color:#d8dee9;&quot;&gt;&lt;code&gt;&lt;span&gt;x = 1 &amp;lt;&amp;lt; 2 * 3 + 4
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;What is the value of x?
+By applying the operator precedence rules for each language we can figure it out.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2e3440;color:#d8dee9;&quot;&gt;&lt;code&gt;&lt;span&gt;&#x2F;&#x2F; C
+&lt;&#x2F;span&gt;&lt;span&gt;x = 1 &amp;lt;&amp;lt; ((2 * 3) + 4) = 1024
+&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;&#x2F; Go
+&lt;&#x2F;span&gt;&lt;span&gt;x = ((1 &amp;lt;&amp;lt; 2) * 3) + 4 = 16
+&lt;&#x2F;span&gt;&lt;span&gt;&#x2F;&#x2F; Rust
+&lt;&#x2F;span&gt;&lt;span&gt;x = 1 &amp;lt;&amp;lt; ((2 * 3) + 4) = 1024
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I added a parenthesis to emphasize the order of operations.&lt;&#x2F;p&gt;
+&lt;p&gt;All languages agree that multiplication should come before addition.
+But Rust and C give bit-shifts lower precedence than addition,
+while Go treats it the same as multiplication
+and evaluates from left to right.&lt;&#x2F;p&gt;
+&lt;p&gt;I find this confusing.
+Sure, it is probably intuitive
+what the order of operations in a simple expression &lt;code&gt;2 * 3 + 4&lt;&#x2F;code&gt; is.
+But that is only because we have &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Order_of_operations#Mnemonics&quot;&gt;PEMDAS&lt;&#x2F;a&gt;
+or a variation of it ingrained in our brains.
+Keeping in mind rules about operator precedence makes a programming language more complex,
+for readers, writers
+and for those writing the parser for the programming language itself.&lt;&#x2F;p&gt;
+&lt;p&gt;Why not get rid of the cases where operator precedence introduces ambiguity?
+A compiler could reject &lt;code&gt;2 * 3 + 4&lt;&#x2F;code&gt; because it might not be clear to everybody
+what the order of operations would be.
+Only expressions like &lt;code&gt;(2 * 3) + 4&lt;&#x2F;code&gt; would be accepted.
+This is more verbose, but it reduces any ambiguity.
+A language doing this would save itself the trouble
+of defining and implementing an operator precedence table.
+It would be simpler to implement and understand.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Colorful Huegene Experiments</title>
         <published>2024-04-21T00:00:00+00:00</published>

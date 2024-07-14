@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>haselkern</title>
-  <meta name="title" content="haselkern">
+  <title>Reject Operator Precedence | haselkern</title>
+  <meta name="title" content="Reject Operator Precedence">
 <meta name="description" content="">
 <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="alternate" type="application/atom+xml" title="haselkern" href="https://haselkern.com/atom.xml">
@@ -217,44 +217,67 @@ ul.blog-posts li a:visited {
       <a href="https:&#x2F;&#x2F;universeodon.com&#x2F;@haselkern">Mastodon</a>
   </nav>
 </header>
-<main>
-      <h3 class="filter">Filtering for "programming"</h3>
-      <small>
-        <a href="https://haselkern.com/blog/">Remove filter</a>
-      </small>
-    <ul class="blog-posts">
-        <li>
-          <span>
-            <i>
-              <time datetime="2024-07-14T00:00:00+00:00" pubdate>
-                2024-07-14
-              </time>
-            </i>
-          </span>
-          <a href="https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-operator-precedence&#x2F;">Reject Operator Precedence</a>
-        </li>
-        <li>
-          <span>
-            <i>
-              <time datetime="2024-04-21T00:00:00+00:00" pubdate>
-                2024-04-21
-              </time>
-            </i>
-          </span>
-          <a href="https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;">Colorful Huegene Experiments</a>
-        </li>
-        <li>
-          <span>
-            <i>
-              <time datetime="2022-09-27T00:00:00+00:00" pubdate>
-                2022-09-27
-              </time>
-            </i>
-          </span>
-          <a href="https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2022-protocol-api-errors&#x2F;">API Errors Are Not Protocol Errors</a>
-        </li>
-    </ul>
-  </main><footer>
+<h1>Reject Operator Precedence</h1>
+      <p>
+        <i>
+          <time datetime="2024-07-14T00:00:00+00:00" pubdate>2024-07-14</time>
+        </i>
+      </p>
+  <main>
+    <p>The precedence of operators defines the order
+in which the operators in an expression are evaluated.
+We know this from real life as <code>2 + 3 * 4 = 2 + (3 * 4) = 14</code>
+which is not equal to <code>(2 + 3) * 4 = 20</code>.</p>
+<p>I added a parenthesis to emphasize the order of operations.</p>
+<p>Programming languages have rules about operator precedence as well.
+Each language defines its own operator precedence rules,
+(e.g.:
+<a href="https://en.cppreference.com/w/c/language/operator_precedence">C</a>,
+<a href="https://go.dev/ref/spec#Operator_precedence">Go</a>,
+<a href="https://doc.rust-lang.org/reference/expressions.html#expression-precedence">Rust</a>)
+which is great because each language is unique and follows its own goals.
+It's also terrible because when you switch between languages
+you never quite know what the exact rules are.</p>
+<p>Let's look at an example to see why operator precedence can be confusing.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>x = 1 &lt;&lt; 2 * 3 + 4
+</span></code></pre>
+<p>What is the value of x?
+By applying the operator precedence rules for each language we can figure it out.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>// C
+</span><span>x = 1 &lt;&lt; ((2 * 3) + 4) = 1024
+</span><span>// Go
+</span><span>x = ((1 &lt;&lt; 2) * 3) + 4 = 16
+</span><span>// Rust
+</span><span>x = 1 &lt;&lt; ((2 * 3) + 4) = 1024
+</span></code></pre>
+<p>I added a parenthesis to emphasize the order of operations.</p>
+<p>All languages agree that multiplication should come before addition.
+But Rust and C give bit-shifts lower precedence than addition,
+while Go treats it the same as multiplication
+and evaluates from left to right.</p>
+<p>I find this confusing.
+Sure, it is probably intuitive
+what the order of operations in a simple expression <code>2 * 3 + 4</code> is.
+But that is only because we have <a href="https://en.wikipedia.org/wiki/Order_of_operations#Mnemonics">PEMDAS</a>
+or a variation of it ingrained in our brains.
+Keeping in mind rules about operator precedence makes a programming language more complex,
+for readers, writers
+and for those writing the parser for the programming language itself.</p>
+<p>Why not get rid of the cases where operator precedence introduces ambiguity?
+A compiler could reject <code>2 * 3 + 4</code> because it might not be clear to everybody
+what the order of operations would be.
+Only expressions like <code>(2 * 3) + 4</code> would be accepted.
+This is more verbose, but it reduces any ambiguity.
+A language doing this would save itself the trouble
+of defining and implementing an operator precedence table.
+It would be simpler to implement and understand.</p>
+
+  </main>
+  <p>
+        Tags:
+          <a href="https://haselkern.com/tags/programming/">#programming</a>
+  </p>
+<footer>
 </footer>
 </body>
 </html>
