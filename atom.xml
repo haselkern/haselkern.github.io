@@ -4,8 +4,116 @@
     <link rel="self" type="application/atom+xml" href="https://haselkern.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://haselkern.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-07-14T00:00:00+00:00</updated>
+    <updated>2024-08-04T00:00:00+00:00</updated>
     <id>https://haselkern.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Explicit Interfaces In Go</title>
+        <published>2024-08-04T00:00:00+00:00</published>
+        <updated>2024-08-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-go-explicit-interface/"/>
+        <id>https://haselkern.com/blog/2024-go-explicit-interface/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2024-go-explicit-interface/">&lt;p&gt;I have an issue with &lt;a href=&quot;https:&#x2F;&#x2F;go.dev&quot;&gt;Go&lt;&#x2F;a&gt;:
+Interfaces are implemented implicitly.&lt;&#x2F;p&gt;
+&lt;p&gt;You implement an interface by implementing all methods of that interface.
+However, you don&#x27;t mention that you are implementing it.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;type Speaker interface &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Speak&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fbcbb;&quot;&gt;string
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;type Cat struct &lt;&#x2F;span&gt;&lt;span&gt;{}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span&gt;(c &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;Cat&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Speak&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fbcbb;&quot;&gt;string &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;meow&amp;quot;
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Announce&lt;&#x2F;span&gt;&lt;span&gt;(s &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;Speaker&lt;&#x2F;span&gt;&lt;span&gt;) {
+&lt;&#x2F;span&gt;&lt;span&gt;    fmt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Println&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;Behold, for it speaks: &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;s&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Speak&lt;&#x2F;span&gt;&lt;span&gt;())
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;main&lt;&#x2F;span&gt;&lt;span&gt;() {
+&lt;&#x2F;span&gt;&lt;span&gt;    cat &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;:= &lt;&#x2F;span&gt;&lt;span&gt;Cat{}
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Announce&lt;&#x2F;span&gt;&lt;span&gt;(cat)
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is fine and works as you would expect.
+But what happens if you don&#x27;t implement the interface correctly?&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;&#x2F;&#x2F;              ↓ Whoops, typo
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span&gt;(c &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;Cat&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Speek&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fbcbb;&quot;&gt;string &lt;&#x2F;span&gt;&lt;span&gt;{ … }
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Trying to run this will result in a compiler error.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2e3440;color:#d8dee9;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;prog.go:21:11:
+&lt;&#x2F;span&gt;&lt;span&gt;cannot use cat (variable of type Cat) as Speaker value in argument to Announce:
+&lt;&#x2F;span&gt;&lt;span&gt;Cat does not implement Speaker (missing method Speak)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The error is immediately noticeable and easy enough to fix.
+But this is only a tiny example.&lt;&#x2F;p&gt;
+&lt;p&gt;In a bigger real-life application, &lt;code&gt;main&lt;&#x2F;code&gt;, &lt;code&gt;Announce&lt;&#x2F;code&gt;, &lt;code&gt;Cat&lt;&#x2F;code&gt;, and &lt;code&gt;Speaker&lt;&#x2F;code&gt;
+would all be located in different files in different packages.
+The compiler would still complain that the error is in &lt;code&gt;main&lt;&#x2F;code&gt;.
+This is technically correct.
+&lt;code&gt;main&lt;&#x2F;code&gt; wants to &lt;code&gt;Announce&lt;&#x2F;code&gt; a &lt;code&gt;Speaker&lt;&#x2F;code&gt;,
+but &lt;code&gt;Cat&lt;&#x2F;code&gt; isn&#x27;t one.&lt;&#x2F;p&gt;
+&lt;p&gt;However, the mistake happened much earlier.
+I wrote &lt;code&gt;Cat&lt;&#x2F;code&gt; and wanted it to implement &lt;code&gt;Speaker&lt;&#x2F;code&gt;,
+except I made a mistake.
+The compiler should direct me towards fixing the method I implemented on &lt;code&gt;Cat&lt;&#x2F;code&gt;
+and not tell me that I cannot use &lt;code&gt;Cat&lt;&#x2F;code&gt; in &lt;code&gt;main&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-solution&quot;&gt;The Solution&lt;&#x2F;h1&gt;
+&lt;p&gt;Hidden away in a &lt;a href=&quot;https:&#x2F;&#x2F;go.dev&#x2F;doc&#x2F;faq#guarantee_satisfies_interface&quot;&gt;short paragraph in the Go FAQ&lt;&#x2F;a&gt;
+lies the solution to this problem:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can ask the compiler to check that the type T implements the interface I
+by attempting an assignment using the zero value for T:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;var _ I = &lt;&#x2F;span&gt;&lt;span&gt;T{} &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;&#x2F;&#x2F; Verify that T implements I.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Applied to the previous example it would look like this.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;type Cat struct &lt;&#x2F;span&gt;&lt;span&gt;{}
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;var _ Speaker = &lt;&#x2F;span&gt;&lt;span&gt;Cat{}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span&gt;(c &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;Cat&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Speek&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fbcbb;&quot;&gt;string &lt;&#x2F;span&gt;&lt;span&gt;{…}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In addition to the previous error message,
+you now get another error.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2e3440;color:#d8dee9;&quot;&gt;&lt;code&gt;&lt;span&gt;.&#x2F;prog.go:11:17:
+&lt;&#x2F;span&gt;&lt;span&gt;cannot use Cat{} (value of type Cat) as Speaker value in variable declaration:
+&lt;&#x2F;span&gt;&lt;span&gt;Cat does not implement Speaker (missing method Speak)
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The error points to the line &lt;code&gt;var _ Speaker = Cat{}&lt;&#x2F;code&gt;,
+right next to the method I want to implement!
+Brilliant.
+This is especially useful with an IDE
+that lets you quickly jump to compile errors.&lt;&#x2F;p&gt;
+&lt;p&gt;Instead of hunting through files trying to figure this out,
+the Go compiler now tells me exactly where I need to fix my mistake.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;expressing-intent&quot;&gt;Expressing Intent&lt;&#x2F;h1&gt;
+&lt;p&gt;Another bonus is that my intent is more clear.
+I did not implement a &lt;code&gt;Speak&lt;&#x2F;code&gt; method &lt;em&gt;by accident&lt;&#x2F;em&gt;
+and just so happened to fulfill the &lt;code&gt;Speaker&lt;&#x2F;code&gt; interface.
+I did it deliberately.
+&lt;code&gt;var _ Speaker = Cat{}&lt;&#x2F;code&gt; tells other programmers
+(which always includes yourself in the future)
+that I &lt;em&gt;want&lt;&#x2F;em&gt; &lt;code&gt;Cat&lt;&#x2F;code&gt; to implement &lt;code&gt;Speaker&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The syntax is a little weird, but you can get used to it.
+However, I would prefer something like
+&lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;std&#x2F;keyword.impl.html&quot;&gt;&lt;code&gt;impl Speaker for Cat&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;,
+which would be easier to understand.&lt;&#x2F;p&gt;
+&lt;p&gt;The next time you are implementing an interface &lt;code&gt;I&lt;&#x2F;code&gt; for your struct &lt;code&gt;T&lt;&#x2F;code&gt;,
+consider making the implementation explicit by writing &lt;code&gt;var _ I = T{}&lt;&#x2F;code&gt;.
+This clarifies your intent
+and will make implementation errors easier to locate.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Reject Operator Precedence</title>
         <published>2024-07-14T00:00:00+00:00</published>
@@ -398,7 +506,7 @@ But when tinkering with it you barely improve your website.
 Instead of writing something or creating a new project,
 you spend a lot of time tweaking the generator for your website.
 That&#x27;s not a bad thing, but it was not wanted I wanted to keep doing.&lt;&#x2F;p&gt;
-&lt;p&gt;That&#x27;s why in March of 2018, I switched to the first &amp;quot;real&amp;quot; static site generator: &lt;a href=&quot;https:&#x2F;&#x2F;getpelican.com&quot;&gt;Pelican&lt;&#x2F;a&gt;.
+&lt;p&gt;That&#x27;s why in March of 2018, I switched to the first &quot;real&quot; static site generator: &lt;a href=&quot;https:&#x2F;&#x2F;getpelican.com&quot;&gt;Pelican&lt;&#x2F;a&gt;.
 It seemed simple enough and I was into Python at the time.
 I also changed the design a bit.&lt;&#x2F;p&gt;
 
@@ -418,7 +526,7 @@ I also changed the design a bit.&lt;&#x2F;p&gt;
         &gt;
     &lt;&#x2F;a&gt;
 &lt;&#x2F;p&gt;
-&lt;p&gt;In September of 2018, I switched to &amp;quot;Ivy&amp;quot;.
+&lt;p&gt;In September of 2018, I switched to &quot;Ivy&quot;.
 The package on PyPi has been replaced by a machine-learning library,
 which I find interesting.
 I don&#x27;t think the design changed much, but I cannot rebuild the website for this state.&lt;&#x2F;p&gt;
@@ -557,7 +665,7 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
         <id>https://haselkern.com/blog/2023-ld53-cassie-the-carrier-pidgeon/</id>
         
         <content type="html" xml:base="https://haselkern.com/blog/2023-ld53-cassie-the-carrier-pidgeon/">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;cassie-the-carrier-pidgeon&quot;&gt;Download the game from the Ludum Dare website here.&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p&gt;I decided to participate in &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&quot;&gt;Ludum Dare&lt;&#x2F;a&gt; this year. Ludum Dare is a biannual game jam, where you create a game catering to a theme that is announced when the jam starts. There are several categories, but I decided to participate in the &amp;quot;compo&amp;quot;, the competition, where you create a game from scratch, by yourself, in 48 hours.&lt;&#x2F;p&gt;
+&lt;p&gt;I decided to participate in &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&quot;&gt;Ludum Dare&lt;&#x2F;a&gt; this year. Ludum Dare is a biannual game jam, where you create a game catering to a theme that is announced when the jam starts. There are several categories, but I decided to participate in the &quot;compo&quot;, the competition, where you create a game from scratch, by yourself, in 48 hours.&lt;&#x2F;p&gt;
 &lt;p&gt;This years theme was &lt;em&gt;delivery&lt;&#x2F;em&gt;. I had some trouble coming up with ideas that felt fun and fit the theme, but after some tinkering I landed on my final idea: A pidgeon that needs to deliver packages in a village. That village is under attack by monsters, so you need to protect yourself with a gun. The more points you score, the more monsters will spawn, forcing you to be careful and also upgrade your weapon.&lt;&#x2F;p&gt;
 &lt;p&gt;I can now proudly present: Cassie, the carrier pidgeon. &lt;a href=&quot;https:&#x2F;&#x2F;ldjam.com&#x2F;events&#x2F;ludum-dare&#x2F;53&#x2F;cassie-the-carrier-pidgeon&quot;&gt;Download from Ludum Dare&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 

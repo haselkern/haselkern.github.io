@@ -38,6 +38,10 @@
         <lastmod>2023-05-03</lastmod>
     </url>
     <url>
+        <loc>https://haselkern.com/blog/2024-go-explicit-interface/</loc>
+        <lastmod>2024-08-04</lastmod>
+    </url>
+    <url>
         <loc>https://haselkern.com/blog/2024-huegene/</loc>
         <lastmod>2024-04-21</lastmod>
     </url>
@@ -63,6 +67,9 @@
     </url>
     <url>
         <loc>https://haselkern.com/tags/gamedev/</loc>
+    </url>
+    <url>
+        <loc>https://haselkern.com/tags/go/</loc>
     </url>
     <url>
         <loc>https://haselkern.com/tags/programming/</loc>

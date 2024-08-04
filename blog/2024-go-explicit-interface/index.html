@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explicit Interfaces In Go | haselkern</title>
+  <meta name="title" content="Explicit Interfaces In Go">
+<meta name="description" content="">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+  
+  <link rel="alternate" type="application/atom+xml" title="haselkern" href="https://haselkern.com/atom.xml">
+  
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+    color: #222;
+}
+
+a {
+    color: #3273dc;
+}
+
+.title {
+    text-decoration: none;
+    border: 0;
+}
+
+.title h1 {
+    font-size: 1.5em;
+}
+
+.title span {
+    font-weight: 400;
+}
+
+.filter {
+    margin-bottom: 0;
+}
+
+nav a {
+    margin-right: 10px;
+}
+
+nav active {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+textarea {
+    width: 100%;
+    font-size: 1rem;
+}
+
+input {
+    font-size: 1rem;
+}
+
+main,
+article {
+    line-height: 1.6;
+}
+
+table {
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
+}
+
+code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+}
+
+pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 0.875rem;
+    overflow-x: auto;
+}
+
+div.highlight pre {
+    background-color: initial;
+    color: initial;
+}
+
+div.highlight code {
+    background-color: unset;
+    color: unset;
+}
+
+blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+}
+
+.helptext {
+    color: #777;
+    font-size: small;
+}
+
+.errorlist {
+    color: #eba613;
+    font-size: small;
+}
+
+/* blog posts */
+ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+}
+
+ul.blog-posts li {
+    display: flex;
+}
+
+ul.blog-posts li span {
+    flex: 0 0 130px;
+}
+
+ul.blog-posts li a:visited {
+    color: #8b6fcb;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333;
+        color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+        color: #eee;
+    }
+
+    a {
+        color: #8cc2dd;
+    }
+
+    code {
+        background-color: #777;
+    }
+
+    pre code {
+        color: #ddd;
+    }
+
+    blockquote {
+        color: #ccc;
+    }
+
+    textarea,
+    input {
+        background-color: #252525;
+        color: #ddd;
+    }
+
+    .helptext {
+        color: #aaa;
+    }
+}
+
+  </style><script data-goatcounter="https://haselkern.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="icon" href="/haselkern.svg" />
+<link rel="mask-icon" href="/haselkern.svg" color="#000000" />
+
+<style>
+    pre code {
+        background-color: #222;
+        color: #ddd !important;
+    }
+</style>
+
+</head>
+<body>
+  <header>
+  <a href="https://haselkern.com/" class="title">
+    <h1>haselkern</h1>
+  </a>
+  <nav aria-label="site">
+      <a href="https://haselkern.com">Home</a>
+      <a href="https://haselkern.com/blog/">Blog</a>
+      <a href="https:&#x2F;&#x2F;github.com&#x2F;haselkern">GitHub</a>
+      <a href="https:&#x2F;&#x2F;universeodon.com&#x2F;@haselkern">Mastodon</a>
+  </nav>
+</header>
+<h1>Explicit Interfaces In Go</h1>
+      <p>
+        <i>
+          <time datetime="2024-08-04T00:00:00+00:00" pubdate>2024-08-04</time>
+        </i>
+      </p>
+  <main>
+    <p>I have an issue with <a href="https://go.dev">Go</a>:
+Interfaces are implemented implicitly.</p>
+<p>You implement an interface by implementing all methods of that interface.
+However, you don't mention that you are implementing it.</p>
+<pre data-lang="go" style="background-color:#2e3440;color:#d8dee9;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#81a1c1;">type Speaker interface </span><span>{
+</span><span>    </span><span style="color:#88c0d0;">Speak</span><span>() </span><span style="color:#8fbcbb;">string
+</span><span>}
+</span><span>
+</span><span style="color:#81a1c1;">type Cat struct </span><span>{}
+</span><span style="color:#81a1c1;">func </span><span>(c </span><span style="color:#81a1c1;">Cat</span><span>) </span><span style="color:#88c0d0;">Speak</span><span>() </span><span style="color:#8fbcbb;">string </span><span>{
+</span><span>    </span><span style="color:#81a1c1;">return </span><span style="color:#a3be8c;">&quot;meow&quot;
+</span><span>}
+</span><span>
+</span><span style="color:#81a1c1;">func </span><span style="color:#88c0d0;">Announce</span><span>(s </span><span style="color:#81a1c1;">Speaker</span><span>) {
+</span><span>    fmt</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">Println</span><span>(</span><span style="color:#a3be8c;">&quot;Behold, for it speaks: &quot;</span><span style="color:#eceff4;">, </span><span>s</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">Speak</span><span>())
+</span><span>}
+</span><span>
+</span><span style="color:#81a1c1;">func </span><span style="color:#88c0d0;">main</span><span>() {
+</span><span>    cat </span><span style="color:#81a1c1;">:= </span><span>Cat{}
+</span><span>    </span><span style="color:#88c0d0;">Announce</span><span>(cat)
+</span><span>}
+</span></code></pre>
+<p>This is fine and works as you would expect.
+But what happens if you don't implement the interface correctly?</p>
+<pre data-lang="go" style="background-color:#2e3440;color:#d8dee9;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#616e88;">//              ↓ Whoops, typo
+</span><span style="color:#81a1c1;">func </span><span>(c </span><span style="color:#81a1c1;">Cat</span><span>) </span><span style="color:#88c0d0;">Speek</span><span>() </span><span style="color:#8fbcbb;">string </span><span>{ … }
+</span></code></pre>
+<p>Trying to run this will result in a compiler error.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>./prog.go:21:11:
+</span><span>cannot use cat (variable of type Cat) as Speaker value in argument to Announce:
+</span><span>Cat does not implement Speaker (missing method Speak)
+</span></code></pre>
+<p>The error is immediately noticeable and easy enough to fix.
+But this is only a tiny example.</p>
+<p>In a bigger real-life application, <code>main</code>, <code>Announce</code>, <code>Cat</code>, and <code>Speaker</code>
+would all be located in different files in different packages.
+The compiler would still complain that the error is in <code>main</code>.
+This is technically correct.
+<code>main</code> wants to <code>Announce</code> a <code>Speaker</code>,
+but <code>Cat</code> isn't one.</p>
+<p>However, the mistake happened much earlier.
+I wrote <code>Cat</code> and wanted it to implement <code>Speaker</code>,
+except I made a mistake.
+The compiler should direct me towards fixing the method I implemented on <code>Cat</code>
+and not tell me that I cannot use <code>Cat</code> in <code>main</code>.</p>
+<h1 id="the-solution">The Solution</h1>
+<p>Hidden away in a <a href="https://go.dev/doc/faq#guarantee_satisfies_interface">short paragraph in the Go FAQ</a>
+lies the solution to this problem:</p>
+<blockquote>
+<p>You can ask the compiler to check that the type T implements the interface I
+by attempting an assignment using the zero value for T:</p>
+<pre data-lang="go" style="background-color:#2e3440;color:#d8dee9;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#81a1c1;">var _ I = </span><span>T{} </span><span style="color:#616e88;">// Verify that T implements I.
+</span></code></pre>
+</blockquote>
+<p>Applied to the previous example it would look like this.</p>
+<pre data-lang="go" style="background-color:#2e3440;color:#d8dee9;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#81a1c1;">type Cat struct </span><span>{}
+</span><span>
+</span><span style="color:#81a1c1;">var _ Speaker = </span><span>Cat{}
+</span><span style="color:#81a1c1;">func </span><span>(c </span><span style="color:#81a1c1;">Cat</span><span>) </span><span style="color:#88c0d0;">Speek</span><span>() </span><span style="color:#8fbcbb;">string </span><span>{…}
+</span></code></pre>
+<p>In addition to the previous error message,
+you now get another error.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>./prog.go:11:17:
+</span><span>cannot use Cat{} (value of type Cat) as Speaker value in variable declaration:
+</span><span>Cat does not implement Speaker (missing method Speak)
+</span></code></pre>
+<p>The error points to the line <code>var _ Speaker = Cat{}</code>,
+right next to the method I want to implement!
+Brilliant.
+This is especially useful with an IDE
+that lets you quickly jump to compile errors.</p>
+<p>Instead of hunting through files trying to figure this out,
+the Go compiler now tells me exactly where I need to fix my mistake.</p>
+<h1 id="expressing-intent">Expressing Intent</h1>
+<p>Another bonus is that my intent is more clear.
+I did not implement a <code>Speak</code> method <em>by accident</em>
+and just so happened to fulfill the <code>Speaker</code> interface.
+I did it deliberately.
+<code>var _ Speaker = Cat{}</code> tells other programmers
+(which always includes yourself in the future)
+that I <em>want</em> <code>Cat</code> to implement <code>Speaker</code>.</p>
+<p>The syntax is a little weird, but you can get used to it.
+However, I would prefer something like
+<a href="https://doc.rust-lang.org/std/keyword.impl.html"><code>impl Speaker for Cat</code></a>,
+which would be easier to understand.</p>
+<p>The next time you are implementing an interface <code>I</code> for your struct <code>T</code>,
+consider making the implementation explicit by writing <code>var _ I = T{}</code>.
+This clarifies your intent
+and will make implementation errors easier to locate.</p>
+
+  </main>
+  <p>
+        Tags:
+          <a href="https://haselkern.com/tags/programming/">#programming</a>
+          <a href="https://haselkern.com/tags/go/">#go</a>
+  </p>
+<footer>
+</footer>
+</body>
+</html>
