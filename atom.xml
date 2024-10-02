@@ -4,8 +4,63 @@
     <link rel="self" type="application/atom+xml" href="https://haselkern.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://haselkern.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-08-04T00:00:00+00:00</updated>
+    <updated>2024-10-02T00:00:00+00:00</updated>
     <id>https://haselkern.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>German Mac Keyboard Improvement</title>
+        <published>2024-10-02T00:00:00+00:00</published>
+        <updated>2024-10-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-mac-keyboard/"/>
+        <id>https://haselkern.com/blog/2024-mac-keyboard/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2024-mac-keyboard/">&lt;p&gt;The desktop environment on Apple computers is application based.
+When you press an app icon in the dock,
+all windows for the selected app will be brought to the foreground.
+By pressing &lt;kbd&gt;Command&lt;&#x2F;kbd&gt;+&lt;kbd&gt;Tab&lt;&#x2F;kbd&gt; you bring up the app switcher
+(I don&#x27;t know if that is the official term for it)
+that allows you to switch between your apps.
+When you select an app in the app switcher,
+all windows of this app will be brought to the foreground,
+just like with the dock.&lt;&#x2F;p&gt;
+&lt;p&gt;I only recently found out that there is a shortcut to switch between windows
+of the current app as well: &lt;kbd&gt;Command&lt;&#x2F;kbd&gt;+&lt;kbd&gt;`&lt;&#x2F;kbd&gt; (grave accent).
+This works great,
+but I found it a bit weird to use
+since the grave accent is just to the left of the backspace button
+on the right side of the keyboard.
+My right hand usually rests on the mouse,
+leaving my left hand to stretch across the entire keyboard to press this shortcut,
+which is &lt;em&gt;not&lt;&#x2F;em&gt; comfortable.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-mac-keyboard&#x2F;keyboard-de.png&quot; alt=&quot;Sketched drawing of a keyboard demonstrating the positions of the Command, Tab and Grave key on a german keyboard layout.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Why did Apple curse me with this ergonomic nightmare?
+What do they have to say to defend themselves?
+&lt;a href=&quot;https:&#x2F;&#x2F;support.apple.com&#x2F;en-us&#x2F;102650#:~:text=Command%E2%80%93Grave%20accent&quot;&gt;On the Apple support website&lt;&#x2F;a&gt; they write:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Command–Grave accent (`): Switch between the windows of the app you&#x27;re using. (The character on the second key varies by keyboard. It&#x27;s generally the key above the Tab key and to the left of the number 1.)&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Wait a minute, my keyboard does not fit this description.
+Who was this description made for?
+Alternating between app switching and window switching
+just by moving a finger to the next key over is the dream
+US keyboard layout users can enjoy by default.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-mac-keyboard&#x2F;keyboard-us.png&quot; alt=&quot;Sketched drawing of a keyboard demonstrating the positions of the Command, Tab and Grave key on a US keyboard layout.&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;You can change this shortcut under &lt;em&gt;Settings → Keyboard → Shortcuts → Keyboard → Move focus to next window&lt;&#x2F;em&gt;.
+I changed it to the key above the tab key,
+which is &lt;kbd&gt;^&lt;&#x2F;kbd&gt; on my german keyboard layout.
+Just by tweaking this shortcut
+window management on Mac feels a &lt;em&gt;lot&lt;&#x2F;em&gt; more natural.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Explicit Interfaces In Go</title>
         <published>2024-08-04T00:00:00+00:00</published>
@@ -45,7 +100,7 @@ However, you don&#x27;t mention that you are implementing it.&lt;&#x2F;p&gt;
 &lt;&#x2F;span&gt;&lt;span&gt;}
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;This is fine and works as you would expect.
-But what happens if you don&#x27;t implement the interface correctly?&lt;&#x2F;p&gt;
+What happens if you don&#x27;t implement the interface correctly?&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;go&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-go &quot;&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;&#x2F;&#x2F;              ↓ Whoops, typo
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;func &lt;&#x2F;span&gt;&lt;span&gt;(c &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;Cat&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Speek&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fbcbb;&quot;&gt;string &lt;&#x2F;span&gt;&lt;span&gt;{ … }
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
@@ -55,7 +110,7 @@ But what happens if you don&#x27;t implement the interface correctly?&lt;&#x2F;p
 &lt;&#x2F;span&gt;&lt;span&gt;Cat does not implement Speaker (missing method Speak)
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The error is immediately noticeable and easy enough to fix.
-But this is only a tiny example.&lt;&#x2F;p&gt;
+However, this is only a tiny example.&lt;&#x2F;p&gt;
 &lt;p&gt;In a bigger real-life application, &lt;code&gt;main&lt;&#x2F;code&gt;, &lt;code&gt;Announce&lt;&#x2F;code&gt;, &lt;code&gt;Cat&lt;&#x2F;code&gt;, and &lt;code&gt;Speaker&lt;&#x2F;code&gt;
 would all be located in different files in different packages.
 The compiler would still complain that the error is in &lt;code&gt;main&lt;&#x2F;code&gt;.

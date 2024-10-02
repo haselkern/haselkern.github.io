@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Mac Keyboard Improvement | haselkern</title>
+  <meta name="title" content="German Mac Keyboard Improvement">
+<meta name="description" content="">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+  
+  <link rel="alternate" type="application/atom+xml" title="haselkern" href="https://haselkern.com/atom.xml">
+  
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+    color: #222;
+}
+
+a {
+    color: #3273dc;
+}
+
+.title {
+    text-decoration: none;
+    border: 0;
+}
+
+.title h1 {
+    font-size: 1.5em;
+}
+
+.title span {
+    font-weight: 400;
+}
+
+.filter {
+    margin-bottom: 0;
+}
+
+nav a {
+    margin-right: 10px;
+}
+
+nav active {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+textarea {
+    width: 100%;
+    font-size: 1rem;
+}
+
+input {
+    font-size: 1rem;
+}
+
+main,
+article {
+    line-height: 1.6;
+}
+
+table {
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
+}
+
+code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+}
+
+pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 0.875rem;
+    overflow-x: auto;
+}
+
+div.highlight pre {
+    background-color: initial;
+    color: initial;
+}
+
+div.highlight code {
+    background-color: unset;
+    color: unset;
+}
+
+blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+}
+
+.helptext {
+    color: #777;
+    font-size: small;
+}
+
+.errorlist {
+    color: #eba613;
+    font-size: small;
+}
+
+/* blog posts */
+ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+}
+
+ul.blog-posts li {
+    display: flex;
+}
+
+ul.blog-posts li span {
+    flex: 0 0 130px;
+}
+
+ul.blog-posts li a:visited {
+    color: #8b6fcb;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333;
+        color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+        color: #eee;
+    }
+
+    a {
+        color: #8cc2dd;
+    }
+
+    code {
+        background-color: #777;
+    }
+
+    pre code {
+        color: #ddd;
+    }
+
+    blockquote {
+        color: #ccc;
+    }
+
+    textarea,
+    input {
+        background-color: #252525;
+        color: #ddd;
+    }
+
+    .helptext {
+        color: #aaa;
+    }
+}
+
+  </style><script data-goatcounter="https://haselkern.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="icon" href="/haselkern.svg" />
+<link rel="mask-icon" href="/haselkern.svg" color="#000000" />
+
+<style>
+    pre code {
+        background-color: #222;
+        color: #ddd !important;
+    }
+</style>
+
+</head>
+<body>
+  <header>
+  <a href="https://haselkern.com/" class="title">
+    <h1>haselkern</h1>
+  </a>
+  <nav aria-label="site">
+      <a href="https://haselkern.com">Home</a>
+      <a href="https://haselkern.com/blog/">Blog</a>
+      <a href="https:&#x2F;&#x2F;github.com&#x2F;haselkern">GitHub</a>
+      <a href="https:&#x2F;&#x2F;universeodon.com&#x2F;@haselkern">Mastodon</a>
+  </nav>
+</header>
+<h1>German Mac Keyboard Improvement</h1>
+      <p>
+        <i>
+          <time datetime="2024-10-02T00:00:00+00:00" pubdate>2024-10-02</time>
+        </i>
+      </p>
+  <main>
+    <p>The desktop environment on Apple computers is application based.
+When you press an app icon in the dock,
+all windows for the selected app will be brought to the foreground.
+By pressing <kbd>Command</kbd>+<kbd>Tab</kbd> you bring up the app switcher
+(I don't know if that is the official term for it)
+that allows you to switch between your apps.
+When you select an app in the app switcher,
+all windows of this app will be brought to the foreground,
+just like with the dock.</p>
+<p>I only recently found out that there is a shortcut to switch between windows
+of the current app as well: <kbd>Command</kbd>+<kbd>`</kbd> (grave accent).
+This works great,
+but I found it a bit weird to use
+since the grave accent is just to the left of the backspace button
+on the right side of the keyboard.
+My right hand usually rests on the mouse,
+leaving my left hand to stretch across the entire keyboard to press this shortcut,
+which is <em>not</em> comfortable.</p>
+<p><img src="https://haselkern.com/blog/2024-mac-keyboard/keyboard-de.png" alt="Sketched drawing of a keyboard demonstrating the positions of the Command, Tab and Grave key on a german keyboard layout." /></p>
+<p>Why did Apple curse me with this ergonomic nightmare?
+What do they have to say to defend themselves?
+<a href="https://support.apple.com/en-us/102650#:~:text=Command%E2%80%93Grave%20accent">On the Apple support website</a> they write:</p>
+<blockquote>
+<p>Command–Grave accent (`): Switch between the windows of the app you're using. (The character on the second key varies by keyboard. It's generally the key above the Tab key and to the left of the number 1.)</p>
+</blockquote>
+<p>Wait a minute, my keyboard does not fit this description.
+Who was this description made for?
+Alternating between app switching and window switching
+just by moving a finger to the next key over is the dream
+US keyboard layout users can enjoy by default.</p>
+<p><img src="https://haselkern.com/blog/2024-mac-keyboard/keyboard-us.png" alt="Sketched drawing of a keyboard demonstrating the positions of the Command, Tab and Grave key on a US keyboard layout." /></p>
+<p>You can change this shortcut under <em>Settings → Keyboard → Shortcuts → Keyboard → Move focus to next window</em>.
+I changed it to the key above the tab key,
+which is <kbd>^</kbd> on my german keyboard layout.
+Just by tweaking this shortcut
+window management on Mac feels a <em>lot</em> more natural.</p>
+
+  </main>
+  <p>
+  </p>
+<footer>
+</footer>
+</body>
+</html>

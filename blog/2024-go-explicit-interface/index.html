@@ -249,7 +249,7 @@ However, you don't mention that you are implementing it.</p>
 </span><span>}
 </span></code></pre>
 <p>This is fine and works as you would expect.
-But what happens if you don't implement the interface correctly?</p>
+What happens if you don't implement the interface correctly?</p>
 <pre data-lang="go" style="background-color:#2e3440;color:#d8dee9;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#616e88;">//              ↓ Whoops, typo
 </span><span style="color:#81a1c1;">func </span><span>(c </span><span style="color:#81a1c1;">Cat</span><span>) </span><span style="color:#88c0d0;">Speek</span><span>() </span><span style="color:#8fbcbb;">string </span><span>{ … }
 </span></code></pre>
@@ -259,7 +259,7 @@ But what happens if you don't implement the interface correctly?</p>
 </span><span>Cat does not implement Speaker (missing method Speak)
 </span></code></pre>
 <p>The error is immediately noticeable and easy enough to fix.
-But this is only a tiny example.</p>
+However, this is only a tiny example.</p>
 <p>In a bigger real-life application, <code>main</code>, <code>Announce</code>, <code>Cat</code>, and <code>Speaker</code>
 would all be located in different files in different packages.
 The compiler would still complain that the error is in <code>main</code>.
