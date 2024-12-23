@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compiler Optimizations | haselkern</title>
+  <meta name="title" content="Compiler Optimizations">
+<meta name="description" content="">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+  
+  <link rel="alternate" type="application/atom+xml" title="haselkern" href="https://haselkern.com/atom.xml">
+  
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+    color: #222;
+}
+
+a {
+    color: #3273dc;
+}
+
+.title {
+    text-decoration: none;
+    border: 0;
+}
+
+.title h1 {
+    font-size: 1.5em;
+}
+
+.title span {
+    font-weight: 400;
+}
+
+.filter {
+    margin-bottom: 0;
+}
+
+nav a {
+    margin-right: 10px;
+}
+
+nav active {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+textarea {
+    width: 100%;
+    font-size: 1rem;
+}
+
+input {
+    font-size: 1rem;
+}
+
+main,
+article {
+    line-height: 1.6;
+}
+
+table {
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
+}
+
+code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+}
+
+pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 0.875rem;
+    overflow-x: auto;
+}
+
+div.highlight pre {
+    background-color: initial;
+    color: initial;
+}
+
+div.highlight code {
+    background-color: unset;
+    color: unset;
+}
+
+blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+}
+
+.helptext {
+    color: #777;
+    font-size: small;
+}
+
+.errorlist {
+    color: #eba613;
+    font-size: small;
+}
+
+/* blog posts */
+ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+}
+
+ul.blog-posts li {
+    display: flex;
+}
+
+ul.blog-posts li span {
+    flex: 0 0 130px;
+}
+
+ul.blog-posts li a:visited {
+    color: #8b6fcb;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333;
+        color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+        color: #eee;
+    }
+
+    a {
+        color: #8cc2dd;
+    }
+
+    code {
+        background-color: #777;
+    }
+
+    pre code {
+        color: #ddd;
+    }
+
+    blockquote {
+        color: #ccc;
+    }
+
+    textarea,
+    input {
+        background-color: #252525;
+        color: #ddd;
+    }
+
+    .helptext {
+        color: #aaa;
+    }
+}
+
+  </style><script data-goatcounter="https://haselkern.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<link rel="icon" href="/haselkern.svg" />
+<link rel="mask-icon" href="/haselkern.svg" color="#000000" />
+
+<style>
+    pre code {
+        background-color: #222;
+        color: #ddd !important;
+    }
+</style>
+
+</head>
+<body>
+  <header>
+  <a href="https://haselkern.com/" class="title">
+    <h1>haselkern</h1>
+  </a>
+  <nav aria-label="site">
+      <a href="https://haselkern.com">Home</a>
+      <a href="https://haselkern.com/blog/">Blog</a>
+      <a href="https:&#x2F;&#x2F;github.com&#x2F;haselkern">GitHub</a>
+      <a href="https:&#x2F;&#x2F;bsky.app&#x2F;profile&#x2F;haselkern.com">Bluesky</a>
+  </nav>
+</header>
+<h1>Compiler Optimizations</h1>
+      <p>
+        <i>
+          <time datetime="2024-12-22T00:00:00+00:00" pubdate>2024-12-22</time>
+        </i>
+      </p>
+  <main>
+    <p>While solving this year's <a href="https://adventofcode.com/2024/day/22">Advent of Code puzzle for day 22</a>, I had written this function (which is a minor spoiler for the puzzle):</p>
+<pre data-lang="rust" style="background-color:#2e3440;color:#d8dee9;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#81a1c1;">fn </span><span style="color:#88c0d0;">mix_prune</span><span>(</span><span style="color:#81a1c1;">mut </span><span>secret</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">usize</span><span>) </span><span style="color:#eceff4;">-&gt; </span><span style="color:#81a1c1;">usize </span><span>{
+</span><span>    </span><span style="color:#81a1c1;">const </span><span>MOD</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">usize = </span><span style="color:#b48ead;">16777216</span><span style="color:#eceff4;">;
+</span><span>
+</span><span>    </span><span style="color:#81a1c1;">let</span><span> n </span><span style="color:#81a1c1;">=</span><span> secret </span><span style="color:#81a1c1;">* </span><span style="color:#b48ead;">64</span><span style="color:#eceff4;">;
+</span><span>    secret </span><span style="color:#81a1c1;">= </span><span>(secret </span><span style="color:#81a1c1;">^</span><span> n) </span><span style="color:#81a1c1;">% </span><span>MOD</span><span style="color:#eceff4;">;
+</span><span>
+</span><span>    </span><span style="color:#81a1c1;">let</span><span> n </span><span style="color:#81a1c1;">=</span><span> secret </span><span style="color:#81a1c1;">/ </span><span style="color:#b48ead;">32</span><span style="color:#eceff4;">;
+</span><span>    secret </span><span style="color:#81a1c1;">= </span><span>(secret </span><span style="color:#81a1c1;">^</span><span> n) </span><span style="color:#81a1c1;">% </span><span>MOD</span><span style="color:#eceff4;">;
+</span><span>
+</span><span>    </span><span style="color:#81a1c1;">let</span><span> n </span><span style="color:#81a1c1;">=</span><span> secret </span><span style="color:#81a1c1;">* </span><span style="color:#b48ead;">2048</span><span style="color:#eceff4;">;
+</span><span>    secret </span><span style="color:#81a1c1;">= </span><span>(secret </span><span style="color:#81a1c1;">^</span><span> n) </span><span style="color:#81a1c1;">% </span><span>MOD</span><span style="color:#eceff4;">;
+</span><span>
+</span><span>    secret
+</span><span>}
+</span></code></pre>
+<p>Starting from a given number, called <code>secret</code>,
+we do three "mix" and "prune" operations
+to calculate a new number.</p>
+<p>Mixing is the process of deriving a new number from the secret
+and performing an XOR operation with the secret.
+Pruning is a modulo operation that will make sure the secret does not grow too large.</p>
+<p>I noticed that all constants that are involved here are a power of two:
+<code>64=2^6</code>, <code>32=2^5</code>, <code>2048=2^11</code> and <code>16777216=2^24</code>.
+This opens some room for optimization.
+Instead of performing a multiplication or division by a power of two,
+<a href="https://en.wikipedia.org/wiki/Arithmetic_shift">we can do a bit shift left or right</a>.
+Just before obliterating the readability of my code
+by replacing all operations with bit shifts,
+I was able to stop myself and think about it a bit.
+The code was fast enough and a runtime profile showed
+that not much time was spent in this function.
+Optimizing this function would not be time well spent.</p>
+<p>However, I was still curious.
+Do I even need to optimize it?</p>
+<p><a href="https://llvm.org">LLVM</a>, the compiler backend that <a href="https://www.rust-lang.org">Rust</a> uses to emit machine code, is a beast.
+It does all sorts of interesting optimizations.
+<a href="https://kristerw.blogspot.com/2019/04/how-llvm-optimizes-geometric-sums.html">Scalar Evolution</a> is an impressive one,
+where it can detect specific loops and transform them into constant time operations.</p>
+<p>What does LLVM make of the function from above?
+Let's fire up <a href="https://godbolt.org">Godbolt</a> (with <code>-C opt-level=3</code>)
+and see what the optimized assembly looks like.</p>
+<pre data-lang="asm" style="background-color:#2e3440;color:#d8dee9;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#88c0d0;">mix_prune:
+</span><span style="color:#616e88;">    ; let n = secret * 64;
+</span><span style="color:#616e88;">    ; secret = (secret ^ n) % MOD;
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">mov     </span><span>eax, edi
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">shl     </span><span>eax, 6
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">xor     </span><span>eax, edi
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">and     </span><span>eax, 16777215
+</span><span>
+</span><span style="color:#616e88;">    ; let n = secret / 32;
+</span><span style="color:#616e88;">    ; secret = (secret ^ n) % MOD;
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">mov     </span><span>ecx, eax
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">shr     </span><span>ecx, 5
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">xor     </span><span>ecx, eax
+</span><span>
+</span><span style="color:#616e88;">    ; let n = secret * 2048;
+</span><span style="color:#616e88;">    ; secret = (secret ^ n) % MOD;
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">mov     </span><span>eax, ecx
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">shl     </span><span>eax, 11
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">and     </span><span>eax, 16775168
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">xor     </span><span>eax, ecx
+</span><span>
+</span><span style="color:#88c0d0;">    </span><span style="color:#81a1c1;">ret
+</span></code></pre>
+<p>The initial function had three blocks of mixing and pruning
+which I separated by newlines here.
+Each block has something interesting in it,
+which we will now take a look at.</p>
+<h1 id="first-block">First Block</h1>
+<pre data-lang="asm" style="background-color:#2e3440;color:#d8dee9;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#616e88;">; let n = secret * 64;
+</span><span style="color:#616e88;">; secret = (secret ^ n) % MOD;
+</span><span style="color:#81a1c1;">mov     </span><span>eax, edi
+</span><span style="color:#81a1c1;">shl     </span><span>eax, 6
+</span><span style="color:#81a1c1;">xor     </span><span>eax, edi
+</span><span style="color:#81a1c1;">and     </span><span>eax, 16777215
+</span></code></pre>
+<p>The first block moves our <code>secret</code>,
+which I suppose is in <code>edi</code>,
+into the working register <code>eax</code>.
+It then shifts the bits left by six places,
+which is equivalent to a multiplication by <code>2^6=64</code>,
+as we discussed earlier.
+So the compiler does this optimization for us!
+That's great, as we can keep our code nice and readable,
+but still know that the compiler will bring us maximum performance.</p>
+<p>The first block ends with an <code>and</code> instruction on <code>eax</code>
+with 16777215 that is one lower than our modulus 16777216 from earlier.
+This is a clever optimization when computing modulo with a power of two.
+Calculating modulo <code>2^n</code> is equivalent to keeping the rightmost <code>n-1</code> bits,
+discarding all higher bits.
+To keep the rightmost <code>n-1</code> bits
+we can use a bit mask with <code>n-1</code> ones,
+which is <code>2^n-1</code>,
+or one lower than the modulus.
+Applying this bit mask to our working register with <code>and</code>
+will perform the modulo operation
+and end the first block.</p>
+<h1 id="second-block">Second Block</h1>
+<pre data-lang="asm" style="background-color:#2e3440;color:#d8dee9;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#616e88;">; let n = secret / 32;
+</span><span style="color:#616e88;">; secret = (secret ^ n) % MOD;
+</span><span style="color:#81a1c1;">mov     </span><span>ecx, eax
+</span><span style="color:#81a1c1;">shr     </span><span>ecx, 5
+</span><span style="color:#81a1c1;">xor     </span><span>ecx, eax
+</span></code></pre>
+<p>Since the first block wrote its result into <code>eax</code>,
+the second block uses <code>ecx</code> as its working register.
+Since <code>32=2^5</code> we can do a division with 32
+by shifting the bits to the right five places.
+This is similar to the multiplication from earlier.
+The difference being that the bits are shifted right to perform division,
+instead of left to perform multiplication.
+Then the "mixing" happens with a <code>xor</code> instruction.</p>
+<p>What about the modulo operation?
+It is missing completely. Why?
+<code>eax</code> from the first block is smaller than our modulus,
+since we just calculated the modulo there.
+By shifting the value 5 bits to the right,
+it will only ever be smaller still.
+XOR-ing these two values will never make them bigger than the modulus.
+LLVM has noticed that taking the modulo of a value
+that is strictly smaller than the modulus has no effect
+and omitted the operation.
+This optimization marks the end of the second block.</p>
+<h1 id="third-block">Third Block</h1>
+<pre data-lang="asm" style="background-color:#2e3440;color:#d8dee9;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#616e88;">; let n = secret * 2048;
+</span><span style="color:#616e88;">; secret = (secret ^ n) % MOD;
+</span><span style="color:#81a1c1;">mov     </span><span>eax, ecx
+</span><span style="color:#81a1c1;">shl     </span><span>eax, 11
+</span><span style="color:#81a1c1;">and     </span><span>eax, 16775168
+</span><span style="color:#81a1c1;">xor     </span><span>eax, ecx
+</span></code></pre>
+<p>The third block looks similar to the first one, except for two things.
+One, the order of <code>and</code> and <code>xor</code> is swapped.
+Two, the value used for <code>and</code> is different.
+Here are the last two instructions from the first block as a reminder:</p>
+<pre data-lang="asm" style="background-color:#2e3440;color:#d8dee9;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#81a1c1;">xor     </span><span>eax, edi
+</span><span style="color:#81a1c1;">and     </span><span>eax, 16777215
+</span></code></pre>
+<p>I do not know why LLVM reordered the instructions here.
+I think it would work fine if the <code>xor</code> and <code>and</code> instructions from the first block were used.
+Nevertheless, the number 16775168 used as a bit mask can be explained
+when put into context of being applied after the left shift.
+The left shift by 11 bits guarantees that the rightmost 11 bits of <code>eax</code> are zero.
+Since they are zero, we do not have to use a mask to set them to zero.
+In our modulo trick from the first block, LLVM used 16777215.
+When we set the lowest 11 bits in this number to zero,
+we get 16775168.
+It remains a mystery to me why LLVM reordered these instructions.</p>
+<h1 id="compilers-are-smart">Compilers Are Smart</h1>
+<p>I think it is interesting to peek behind the curtains of the "low level" sometimes
+and see what the computer is actually doing with the code you write.
+It is very comforting to know that I do not have to put effort into
+micro-optimizations.
+I can write readable code and be reasonably sure that I get the fastest
+possible machine code.
+This is all thanks to a lot of smart people
+who put a whole lot of effort into making sure that <a href="https://llvm.org/docs/Passes.html">LLVM knows how to optimize a lot of things</a>.</p>
+
+  </main>
+  <p>
+        Tags:
+          <a href="https://haselkern.com/tags/programming/">#programming</a>
+  </p>
+<footer>
+</footer>
+</body>
+</html>

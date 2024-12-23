@@ -4,8 +4,185 @@
     <link rel="self" type="application/atom+xml" href="https://haselkern.com/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://haselkern.com"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-10-02T00:00:00+00:00</updated>
+    <updated>2024-12-22T00:00:00+00:00</updated>
     <id>https://haselkern.com/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Compiler Optimizations</title>
+        <published>2024-12-22T00:00:00+00:00</published>
+        <updated>2024-12-22T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Lars
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-smart-compiler/"/>
+        <id>https://haselkern.com/blog/2024-smart-compiler/</id>
+        
+        <content type="html" xml:base="https://haselkern.com/blog/2024-smart-compiler/">&lt;p&gt;While solving this year&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;adventofcode.com&#x2F;2024&#x2F;day&#x2F;22&quot;&gt;Advent of Code puzzle for day 22&lt;&#x2F;a&gt;, I had written this function (which is a minor spoiler for the puzzle):&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;mix_prune&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mut &lt;&#x2F;span&gt;&lt;span&gt;secret&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;usize &lt;&#x2F;span&gt;&lt;span&gt;{
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;MOD&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;usize = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;16777216&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; n &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;64&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;(secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;^&lt;&#x2F;span&gt;&lt;span&gt; n) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;% &lt;&#x2F;span&gt;&lt;span&gt;MOD&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; n &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;32&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;(secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;^&lt;&#x2F;span&gt;&lt;span&gt; n) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;% &lt;&#x2F;span&gt;&lt;span&gt;MOD&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span&gt; n &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;* &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;2048&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;    secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;(secret &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;^&lt;&#x2F;span&gt;&lt;span&gt; n) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;% &lt;&#x2F;span&gt;&lt;span&gt;MOD&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span&gt;    secret
+&lt;&#x2F;span&gt;&lt;span&gt;}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Starting from a given number, called &lt;code&gt;secret&lt;&#x2F;code&gt;,
+we do three &quot;mix&quot; and &quot;prune&quot; operations
+to calculate a new number.&lt;&#x2F;p&gt;
+&lt;p&gt;Mixing is the process of deriving a new number from the secret
+and performing an XOR operation with the secret.
+Pruning is a modulo operation that will make sure the secret does not grow too large.&lt;&#x2F;p&gt;
+&lt;p&gt;I noticed that all constants that are involved here are a power of two:
+&lt;code&gt;64=2^6&lt;&#x2F;code&gt;, &lt;code&gt;32=2^5&lt;&#x2F;code&gt;, &lt;code&gt;2048=2^11&lt;&#x2F;code&gt; and &lt;code&gt;16777216=2^24&lt;&#x2F;code&gt;.
+This opens some room for optimization.
+Instead of performing a multiplication or division by a power of two,
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Arithmetic_shift&quot;&gt;we can do a bit shift left or right&lt;&#x2F;a&gt;.
+Just before obliterating the readability of my code
+by replacing all operations with bit shifts,
+I was able to stop myself and think about it a bit.
+The code was fast enough and a runtime profile showed
+that not much time was spent in this function.
+Optimizing this function would not be time well spent.&lt;&#x2F;p&gt;
+&lt;p&gt;However, I was still curious.
+Do I even need to optimize it?&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;llvm.org&quot;&gt;LLVM&lt;&#x2F;a&gt;, the compiler backend that &lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&quot;&gt;Rust&lt;&#x2F;a&gt; uses to emit machine code, is a beast.
+It does all sorts of interesting optimizations.
+&lt;a href=&quot;https:&#x2F;&#x2F;kristerw.blogspot.com&#x2F;2019&#x2F;04&#x2F;how-llvm-optimizes-geometric-sums.html&quot;&gt;Scalar Evolution&lt;&#x2F;a&gt; is an impressive one,
+where it can detect specific loops and transform them into constant time operations.&lt;&#x2F;p&gt;
+&lt;p&gt;What does LLVM make of the function from above?
+Let&#x27;s fire up &lt;a href=&quot;https:&#x2F;&#x2F;godbolt.org&quot;&gt;Godbolt&lt;&#x2F;a&gt; (with &lt;code&gt;-C opt-level=3&lt;&#x2F;code&gt;)
+and see what the optimized assembly looks like.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;mix_prune:
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    ; let n = secret * 64;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    ; secret = (secret ^ n) % MOD;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mov     &lt;&#x2F;span&gt;&lt;span&gt;eax, edi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;shl     &lt;&#x2F;span&gt;&lt;span&gt;eax, 6
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;xor     &lt;&#x2F;span&gt;&lt;span&gt;eax, edi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;and     &lt;&#x2F;span&gt;&lt;span&gt;eax, 16777215
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    ; let n = secret &#x2F; 32;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    ; secret = (secret ^ n) % MOD;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mov     &lt;&#x2F;span&gt;&lt;span&gt;ecx, eax
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;shr     &lt;&#x2F;span&gt;&lt;span&gt;ecx, 5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;xor     &lt;&#x2F;span&gt;&lt;span&gt;ecx, eax
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    ; let n = secret * 2048;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    ; secret = (secret ^ n) % MOD;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mov     &lt;&#x2F;span&gt;&lt;span&gt;eax, ecx
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;shl     &lt;&#x2F;span&gt;&lt;span&gt;eax, 11
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;and     &lt;&#x2F;span&gt;&lt;span&gt;eax, 16775168
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;xor     &lt;&#x2F;span&gt;&lt;span&gt;eax, ecx
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;ret
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The initial function had three blocks of mixing and pruning
+which I separated by newlines here.
+Each block has something interesting in it,
+which we will now take a look at.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;first-block&quot;&gt;First Block&lt;&#x2F;h1&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;; let n = secret * 64;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;; secret = (secret ^ n) % MOD;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mov     &lt;&#x2F;span&gt;&lt;span&gt;eax, edi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;shl     &lt;&#x2F;span&gt;&lt;span&gt;eax, 6
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;xor     &lt;&#x2F;span&gt;&lt;span&gt;eax, edi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;and     &lt;&#x2F;span&gt;&lt;span&gt;eax, 16777215
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The first block moves our &lt;code&gt;secret&lt;&#x2F;code&gt;,
+which I suppose is in &lt;code&gt;edi&lt;&#x2F;code&gt;,
+into the working register &lt;code&gt;eax&lt;&#x2F;code&gt;.
+It then shifts the bits left by six places,
+which is equivalent to a multiplication by &lt;code&gt;2^6=64&lt;&#x2F;code&gt;,
+as we discussed earlier.
+So the compiler does this optimization for us!
+That&#x27;s great, as we can keep our code nice and readable,
+but still know that the compiler will bring us maximum performance.&lt;&#x2F;p&gt;
+&lt;p&gt;The first block ends with an &lt;code&gt;and&lt;&#x2F;code&gt; instruction on &lt;code&gt;eax&lt;&#x2F;code&gt;
+with 16777215 that is one lower than our modulus 16777216 from earlier.
+This is a clever optimization when computing modulo with a power of two.
+Calculating modulo &lt;code&gt;2^n&lt;&#x2F;code&gt; is equivalent to keeping the rightmost &lt;code&gt;n-1&lt;&#x2F;code&gt; bits,
+discarding all higher bits.
+To keep the rightmost &lt;code&gt;n-1&lt;&#x2F;code&gt; bits
+we can use a bit mask with &lt;code&gt;n-1&lt;&#x2F;code&gt; ones,
+which is &lt;code&gt;2^n-1&lt;&#x2F;code&gt;,
+or one lower than the modulus.
+Applying this bit mask to our working register with &lt;code&gt;and&lt;&#x2F;code&gt;
+will perform the modulo operation
+and end the first block.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;second-block&quot;&gt;Second Block&lt;&#x2F;h1&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;; let n = secret &#x2F; 32;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;; secret = (secret ^ n) % MOD;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mov     &lt;&#x2F;span&gt;&lt;span&gt;ecx, eax
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;shr     &lt;&#x2F;span&gt;&lt;span&gt;ecx, 5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;xor     &lt;&#x2F;span&gt;&lt;span&gt;ecx, eax
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Since the first block wrote its result into &lt;code&gt;eax&lt;&#x2F;code&gt;,
+the second block uses &lt;code&gt;ecx&lt;&#x2F;code&gt; as its working register.
+Since &lt;code&gt;32=2^5&lt;&#x2F;code&gt; we can do a division with 32
+by shifting the bits to the right five places.
+This is similar to the multiplication from earlier.
+The difference being that the bits are shifted right to perform division,
+instead of left to perform multiplication.
+Then the &quot;mixing&quot; happens with a &lt;code&gt;xor&lt;&#x2F;code&gt; instruction.&lt;&#x2F;p&gt;
+&lt;p&gt;What about the modulo operation?
+It is missing completely. Why?
+&lt;code&gt;eax&lt;&#x2F;code&gt; from the first block is smaller than our modulus,
+since we just calculated the modulo there.
+By shifting the value 5 bits to the right,
+it will only ever be smaller still.
+XOR-ing these two values will never make them bigger than the modulus.
+LLVM has noticed that taking the modulo of a value
+that is strictly smaller than the modulus has no effect
+and omitted the operation.
+This optimization marks the end of the second block.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;third-block&quot;&gt;Third Block&lt;&#x2F;h1&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;; let n = secret * 2048;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;; secret = (secret ^ n) % MOD;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mov     &lt;&#x2F;span&gt;&lt;span&gt;eax, ecx
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;shl     &lt;&#x2F;span&gt;&lt;span&gt;eax, 11
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;and     &lt;&#x2F;span&gt;&lt;span&gt;eax, 16775168
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;xor     &lt;&#x2F;span&gt;&lt;span&gt;eax, ecx
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The third block looks similar to the first one, except for two things.
+One, the order of &lt;code&gt;and&lt;&#x2F;code&gt; and &lt;code&gt;xor&lt;&#x2F;code&gt; is swapped.
+Two, the value used for &lt;code&gt;and&lt;&#x2F;code&gt; is different.
+Here are the last two instructions from the first block as a reminder:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;xor     &lt;&#x2F;span&gt;&lt;span&gt;eax, edi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;and     &lt;&#x2F;span&gt;&lt;span&gt;eax, 16777215
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I do not know why LLVM reordered the instructions here.
+I think it would work fine if the &lt;code&gt;xor&lt;&#x2F;code&gt; and &lt;code&gt;and&lt;&#x2F;code&gt; instructions from the first block were used.
+Nevertheless, the number 16775168 used as a bit mask can be explained
+when put into context of being applied after the left shift.
+The left shift by 11 bits guarantees that the rightmost 11 bits of &lt;code&gt;eax&lt;&#x2F;code&gt; are zero.
+Since they are zero, we do not have to use a mask to set them to zero.
+In our modulo trick from the first block, LLVM used 16777215.
+When we set the lowest 11 bits in this number to zero,
+we get 16775168.
+It remains a mystery to me why LLVM reordered these instructions.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;compilers-are-smart&quot;&gt;Compilers Are Smart&lt;&#x2F;h1&gt;
+&lt;p&gt;I think it is interesting to peek behind the curtains of the &quot;low level&quot; sometimes
+and see what the computer is actually doing with the code you write.
+It is very comforting to know that I do not have to put effort into
+micro-optimizations.
+I can write readable code and be reasonably sure that I get the fastest
+possible machine code.
+This is all thanks to a lot of smart people
+who put a whole lot of effort into making sure that &lt;a href=&quot;https:&#x2F;&#x2F;llvm.org&#x2F;docs&#x2F;Passes.html&quot;&gt;LLVM knows how to optimize a lot of things&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>German Mac Keyboard Improvement</title>
         <published>2024-10-02T00:00:00+00:00</published>
@@ -266,12 +443,12 @@ Every pixel remembers its parent and gets filled with a color that differs sligh
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;mutation.drawio.png&quot; title=&quot;a diagram showing the spread of color from a seed. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a diagram showing the spread of color from a seed&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;mutation.drawio.03b62672f7dc8a92.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;mutation.drawio.68587b68ad6a09c6.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 1124px);
                 aspect-ratio: 1124&#x2F;484;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;mutation.drawio.8d008250acefae24.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;mutation.drawio.158c464f1a85778b.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -284,12 +461,12 @@ Every pixel remembers its parent and gets filled with a color that differs sligh
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;deterministic-front.jpg&quot; title=&quot;colorful vertical lines. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;colorful vertical lines&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;deterministic-front.da7c5861bebb7970.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;deterministic-front.f0b7c50e502f25d9.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 1920px);
                 aspect-ratio: 1920&#x2F;1080;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;deterministic-front.b105eb89b5bc3b46.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;deterministic-front.88aa49068711253f.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -306,12 +483,12 @@ By picking a random pixel in the front, the image looks much more organic.&lt;&#
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;basic.jpg&quot; title=&quot;randomized gradients radiating outward from the center. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;randomized gradients radiating outward from the center&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;basic.f6db27804f1a8f38.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;basic.5157cb6d48cfd241.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 1920px);
                 aspect-ratio: 1920&#x2F;1080;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;basic.d4572761bc24eb66.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;basic.55693d22ab55edbb.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -325,12 +502,12 @@ For this image, I picked an orange seed and moved it off-center.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;pleasing.png&quot; title=&quot;orange colors radiating from a point to the left side of the image. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;orange colors radiating from a point to the left side of the image&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;pleasing.e09c49d619ed7f4c.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;pleasing.c4de8d75a82f5373.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 1920px);
                 aspect-ratio: 1920&#x2F;1080;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;pleasing.8c8e599a12e8ef2c.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;pleasing.0ea98032a8a439c0.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -343,12 +520,12 @@ For this image, I picked an orange seed and moved it off-center.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;two-seeds.jpg&quot; title=&quot;blue colors on the left, orange colors on the right, separated by a diagonal line. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;blue colors on the left, orange colors on the right, separated by a diagonal line&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;two-seeds.1528b3fbfa8916c6.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;two-seeds.3182e8b75e465af9.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 1920px);
                 aspect-ratio: 1920&#x2F;1080;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;two-seeds.010c359ecd28bb4b.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;two-seeds.5a6ffe9fa17cb406.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -369,12 +546,12 @@ making it look like forests and mountains are catching the last rays of the sun.
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;sunset.png&quot; title=&quot;a scene that is reminiscent of a sunset. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a scene that is reminiscent of a sunset&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset.470e6307028e7444.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset.21ee740a10ff4485.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 1920px);
                 aspect-ratio: 1920&#x2F;1080;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset.e3364f2ab4581216.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset.e6ebfde47fae7eb7.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -387,12 +564,12 @@ making it look like forests and mountains are catching the last rays of the sun.
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-huegene&#x2F;sunset_big.jpg&quot; title=&quot;another sunset. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;another sunset&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset_big.cf43bec690260075.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset_big.d3d148dbc10dc685.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 3840px);
                 aspect-ratio: 3840&#x2F;2160;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset_big.d347dcb8d7bdca79.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;sunset_big.8fefca299ba8533c.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -472,12 +649,12 @@ and was able to read JSON frontmatter.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-14.png&quot; title=&quot;a colorful website with big clickable tiles. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a colorful website with big clickable tiles&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-14.f9c35b5e547fdc33.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-14.b71c8d6b520bb421.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;1716;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-14.9e9f206401211212.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-14.d2d4c806d0e56acf.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -490,12 +667,12 @@ and was able to read JSON frontmatter.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2016-12-20.png&quot; title=&quot;a sparse website with a few links and a stylized font. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a sparse website with a few links and a stylized font&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-20.c8b21342de765f61.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-20.03d581fe3d42fcc2.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;1548;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-20.68806b3887e8db55.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2016-12-20.9a616df96432d2d7.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -511,12 +688,12 @@ over a the course of a few months.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-07-09.png&quot; title=&quot;a website with the title on the left side and a few links on the right. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a website with the title on the left side and a few links on the right&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-07-09.94f61a6eb3c4a10e.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-07-09.b9eb2aa1aa2ef599.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;1094;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-07-09.39b0cad67431ff2a.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-07-09.7a0e9c38e6ca6384.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -528,12 +705,12 @@ over a the course of a few months.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-10-18.png&quot; title=&quot;the same website, but now with the title at the top. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;the same website, but now with the title at the top&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-10-18.668ff564492a0006.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-10-18.b4016f68f9e3ac11.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;1506;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-10-18.97e71abc000201dd.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-10-18.cc05d6abc49739af.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -545,12 +722,12 @@ over a the course of a few months.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2017-11-25.png&quot; title=&quot;the same website, but now with a tilted background box. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;the same website, but now with a tilted background box&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-11-25.c8607e9686f73cbe.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-11-25.3ab6599a473fae90.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;1506;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-11-25.cad6b349a5a5d7fe.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2017-11-25.5dac0bdbca7f009b.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -570,12 +747,12 @@ I also changed the design a bit.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2018-03-28.png&quot; title=&quot;the same website as before, but now with thinner fonts. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;the same website as before, but now with thinner fonts&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2018-03-28.6c7c77cf07fab270.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2018-03-28.7905ba7a6d1ab974.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;1421;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2018-03-28.9024dc31bdff126a.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2018-03-28.e8a207f1d5b23b82.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -598,12 +775,12 @@ with the main action, like opening a website or downloading a file, being highli
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-11-24.png&quot; title=&quot;a black-and-white website with a few of my projects. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a black-and-white website with a few of my projects&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-11-24.782397678cff325b.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-11-24.a8bd0baded670cfb.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;2682;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-11-24.bb292f6929c24ce3.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-11-24.6f3dbb260c3e58c1.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -624,12 +801,12 @@ I kept the idea of the previous design but made it more playful with some images
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2019-12-22.png&quot; title=&quot;a website with my projects, each project has an image and some actions. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a website with my projects, each project has an image and some actions&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-12-22.cea3c926fb6c207b.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-12-22.5ed157cc6782ea5b.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2358px);
                 aspect-ratio: 2358&#x2F;2062;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-12-22.54a79e450d7b731d.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2019-12-22.f8a4a165e204975b.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -649,12 +826,12 @@ It also was the first design to feature a dark mode.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;2024-04-18.png&quot; title=&quot;a simple website showing a post preview, it is split into light and dark mode. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a simple website showing a post preview, it is split into light and dark mode&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2024-04-18.20a800d633129fd7.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2024-04-18.851b3722b7d6b5fe.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2114px);
                 aspect-ratio: 2114&#x2F;1084;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2024-04-18.388804c5f41671ad.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;2024-04-18.46b96dce201e8179.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -679,12 +856,12 @@ Simplicity is also the main theme of the theme I&#x27;m using,
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2024-ssg&#x2F;zola-bear-preview.png&quot; title=&quot;zola bear blog preview. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;zola bear blog preview&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;zola-bear-preview.621d549aa8cfb09e.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;zola-bear-preview.b2162ff287f17936.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2880px);
                 aspect-ratio: 2880&#x2F;1800;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;zola-bear-preview.25632a9675a06801.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;zola-bear-preview.dd86825242a4360f.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -729,12 +906,12 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;banner.png&quot; title=&quot;a pixel art pidgeon carrying a gattling gun under its wing. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;a pixel art pidgeon carrying a gattling gun under its wing&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;banner.53e9821ebe6064a3.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;banner.c7558f36e08cdf67.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 960px);
                 aspect-ratio: 960&#x2F;300;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;banner.299819944f88685f.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;banner.cc9d1f44df55ddde.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -773,12 +950,12 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;dev02.png&quot; title=&quot;crude pixel art with a horrible color palette and very basic characters. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;crude pixel art with a horrible color palette and very basic characters&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;dev02.b4acc58f00844dd9.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;dev02.42ff1d4048605dd8.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2865px);
                 aspect-ratio: 2865&#x2F;1607;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;dev02.4318803dabf685f0.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;dev02.01994651fbda2ab9.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -791,12 +968,12 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;game01.png&quot; title=&quot;still crude pixel art game, but now with consistent muted purple and orange colors. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;still crude pixel art game, but now with consistent muted purple and orange colors&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;game01.d7e9c5badbf68c0a.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;game01.45a094b756b8c051.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 2873px);
                 aspect-ratio: 2873&#x2F;1621;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;game01.b8f1364fa0610127.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;game01.45dc7d707ebb4093.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -812,12 +989,12 @@ I&#x27;m curious as to how long I will like this design.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2023-ld53-cassie-the-carrier-pidgeon&#x2F;fanart.png&quot; title=&quot;characters from several games, including a mean looking Cassie. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;characters from several games, including a mean looking Cassie&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;fanart.64265e05d2b5ad2c.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;fanart.7cca633df6614865.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 800px);
                 aspect-ratio: 800&#x2F;512;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;fanart.8f3e3ecf74fbe6e5.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;fanart.50b3bb8656e977cd.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -963,12 +1140,12 @@ and adding some more features over time.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;header.png&quot; title=&quot;header image. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;header image&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;header.b24a6c8ef4477606.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;header.86d38de4304602c6.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 1024px);
                 aspect-ratio: 1024&#x2F;500;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;header.23df160566e447ee.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;header.9a02d56539e6153d.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -981,12 +1158,12 @@ and adding some more features over time.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot1.jpg&quot; title=&quot;menu. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;menu&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot1.8b88a5a6d1732596.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot1.89894311470feeca.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 333px);
                 aspect-ratio: 333&#x2F;592;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot1.96b012dfb523b963.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot1.78476d83e2786139.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -999,12 +1176,12 @@ and adding some more features over time.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot2.jpg&quot; title=&quot;in game. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;in game&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot2.c18196874a2bfe57.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot2.99bec7b3591a9aff.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 333px);
                 aspect-ratio: 333&#x2F;592;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot2.9329f6357b1a37ff.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot2.f881b91ece4116f8.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
@@ -1017,12 +1194,12 @@ and adding some more features over time.&lt;&#x2F;p&gt;
     &lt;a href=&quot;https:&#x2F;&#x2F;haselkern.com&#x2F;blog&#x2F;2019-trash-belt&#x2F;screenshot3.jpg&quot; title=&quot;game over. click for full resolution image.&quot;&gt;
         &lt;img
             alt=&quot;game over&quot;
-            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot3.a5b8b09857fe30c3.jpg&quot;
+            src=&quot;https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot3.9a2f2a4e2213c9ec.webp&quot;
             loading=&quot;lazy&quot;
             style=&quot;
                 width: min(100%, 333px);
                 aspect-ratio: 333&#x2F;592;
-                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot3.574a6b43e008e1db.jpg);
+                background-image: url(https:&amp;#x2F;&amp;#x2F;haselkern.com&amp;#x2F;processed_images&amp;#x2F;screenshot3.89267f541c04e3c0.webp);
                 background-size: 100% 100%;
             &quot;
         &gt;
