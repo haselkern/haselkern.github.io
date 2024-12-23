@@ -19,10 +19,10 @@
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-smart-compiler/"/>
-        <id>https://haselkern.com/blog/2024-smart-compiler/</id>
+        <link rel="alternate" type="text/html" href="https://haselkern.com/blog/2024-compiler-optimizations/"/>
+        <id>https://haselkern.com/blog/2024-compiler-optimizations/</id>
         
-        <content type="html" xml:base="https://haselkern.com/blog/2024-smart-compiler/">&lt;p&gt;While solving this year&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;adventofcode.com&#x2F;2024&#x2F;day&#x2F;22&quot;&gt;Advent of Code puzzle for day 22&lt;&#x2F;a&gt;, I had written this function (which is a minor spoiler for the puzzle):&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://haselkern.com/blog/2024-compiler-optimizations/">&lt;p&gt;While solving this year&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;adventofcode.com&#x2F;2024&#x2F;day&#x2F;22&quot;&gt;Advent of Code puzzle for day 22&lt;&#x2F;a&gt;, I had written this function (which is a minor spoiler for the puzzle):&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;rust&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-rust &quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;mix_prune&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;mut &lt;&#x2F;span&gt;&lt;span&gt;secret&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;usize&lt;&#x2F;span&gt;&lt;span&gt;) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;-&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;usize &lt;&#x2F;span&gt;&lt;span&gt;{
 &lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;const &lt;&#x2F;span&gt;&lt;span&gt;MOD&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;usize = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;16777216&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;;
 &lt;&#x2F;span&gt;&lt;span&gt;

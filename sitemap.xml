@@ -38,6 +38,10 @@
         <lastmod>2023-05-03</lastmod>
     </url>
     <url>
+        <loc>https://haselkern.com/blog/2024-compiler-optimizations/</loc>
+        <lastmod>2024-12-23</lastmod>
+    </url>
+    <url>
         <loc>https://haselkern.com/blog/2024-go-explicit-interface/</loc>
         <lastmod>2024-08-04</lastmod>
     </url>
@@ -52,10 +56,6 @@
     <url>
         <loc>https://haselkern.com/blog/2024-operator-precedence/</loc>
         <lastmod>2024-07-14</lastmod>
-    </url>
-    <url>
-        <loc>https://haselkern.com/blog/2024-smart-compiler/</loc>
-        <lastmod>2024-12-23</lastmod>
     </url>
     <url>
         <loc>https://haselkern.com/blog/2024-ssg/</loc>
